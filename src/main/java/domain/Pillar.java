@@ -3,15 +3,23 @@ package domain;
 import java.util.List;
 
 public class Pillar {
+
     private int id;
-    private List<Bridge> bridges;
+    private int height;
+    private List<Direction> directions;
 
-    public Pillar() {
+    public Pillar(int id, int height) {
         this.id = id;
-        this.bridges = createBridges();
+        this.height = height;
     }
 
-    private List<Bridge> createBridges(){
-        return null;
+    public int getId() {
+        return id;
     }
+
+    public int getHeight() {
+        return height;
+    }
+
+
 }

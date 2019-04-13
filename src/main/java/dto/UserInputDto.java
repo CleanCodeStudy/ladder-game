@@ -19,7 +19,7 @@ public class UserInputDto {
         return this.names;
     }
 
-    public List<User> toEntity() {
+    public List<User> toEntities() {
         return this.names.stream()
                 .map(name -> new User(name))
                 .collect(Collectors.toList());

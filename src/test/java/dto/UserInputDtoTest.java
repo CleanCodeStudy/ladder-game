@@ -22,7 +22,7 @@ public class UserInputDtoTest {
         UserInputDto userInputDto = new UserInputDto(names);
 
         List<String> collectNames = Arrays.asList(names.split(","));
-        List<User> users = userInputDto.toEntity();
+        List<User> users = userInputDto.toEntities();
 
         assertThat(users.size()).isEqualTo(4);
         for (int i = 0; i < users.size(); i++) {
