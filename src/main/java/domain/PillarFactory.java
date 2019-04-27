@@ -2,41 +2,83 @@ package domain;
 
 import domain.direction.Direction;
 import domain.direction.DirectionGenerator;
+import domain.direction.RandomGenerator;
 import dto.UserInputDto;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class PillarFactory {
 
-    private UserInputDto inputDto;
+    private static final int ZERO = 0;
+
+    private List<String> names;
+    private int height;
 
     public PillarFactory(UserInputDto inputDto) {
-        this.inputDto = inputDto;
+        this.names = inputDto.getNames();
+        this.height = inputDto.getHeight();
     }
 
-    public List<Pillar> createPillar(DirectionGenerator directionGenerator) {
-        List<User> users = inputDto.toEntities();
-        List<Pillar> pillars = users.stream()
-                .map(user -> new Pillar(user, directionGenerator))
-                .collect(Collectors.toList());
-        syncPillar(pillars);
+    public List<Pillar> createPillars() {
+        int lastIdx = names.size() - 1;
+        List<Pillar> pillars = new ArrayList<>();
+
+        Pillar before = Pillar.getDownPillar(height);
+        for (int idx = 0; idx <= lastIdx; idx++) {
+            Pillar now = createOne(names.get(idx), height);
+            before = syncBefore(before, now);
+            idx = syncIdx(idx, now);
+            addPillar(pillars, now);
+        }
+        changeLastPillar(pillars.get(lastIdx));
+
         return pillars;
     }
 
-    private void syncPillar(List<Pillar> pillars) {
-        for (int idx = 0; idx < pillars.size(); idx++) {
-            //오른쪽이동 -> 오른쪽 기둥은 왼쪽이동으로
-            //왼쪽이동 -> 왼쪽 기둥은 오른쪽이동으로
-        }
-
+    public Pillar createOne(String name, int height) {
+        DirectionGenerator generator = new RandomGenerator(height);
+        return new Pillar(new User(name), generator);
     }
 
-    private void changeDirection(Pillar pillar,int idx){
-        if(pillar.getDirections().get(idx)==Direction.RIGHT){
+    public Pillar syncBefore(Pillar before, Pillar now) {
+        List<Direction> beforeDirections = before.getDirections();
 
+        IntStream.range(0, before.getHeight())
+                .filter(idx -> beforeDirections.get(idx).isRight())
+                .forEach(idx -> now.changeDirection(idx, Direction.LEFT));
+
+        return getPillar(before, now);
+    }
+
+    public int syncIdx(int now, Pillar pillar) {
+        if (pillar.getRightAmount() == ZERO) {
+            return now - 1;
+        }
+        return now;
+    }
+
+    public Pillar getPillar(Pillar before, Pillar now) {
+        if (now.getRightAmount() == ZERO) {
+            return before;
+        }
+        return now;
+    }
+
+    public void addPillar(List<Pillar> pillars, Pillar now) {
+        if (now.getRightAmount() != ZERO) {
+            pillars.add(now);
         }
     }
 
+    private void changeLastPillar(Pillar pillar) {
+        List<Direction> directions = pillar.getDirections();
+
+        IntStream.range(0, directions.size())
+                .boxed()
+                .filter(height -> directions.get(height).isRight())
+                .forEach(height -> pillar.changeDirection(height, Direction.DOWN));
+    }
 
 }

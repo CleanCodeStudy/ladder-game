@@ -1,8 +1,6 @@
 package domain;
 
-import domain.direction.Direction;
 import domain.direction.DirectionGenerator;
-import domain.direction.DownGenerator;
 import domain.direction.RandomGenerator;
 import dto.UserInputDto;
 import org.junit.Before;
@@ -15,56 +13,40 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PillarFactoryTest {
 
     PillarFactory factory;
-    DirectionGenerator directionGenerator;
+    DirectionGenerator generator;
     int people;
     int height;
     UserInputDto inputDto;
 
     @Before
     public void setUp() throws Exception {
-        String names = "kim,lee,park";
+        String names = "kim,lee,park,choi";
         height = 5;
         inputDto = new UserInputDto(names, height);
         people = inputDto.getNames().size();
         factory = new PillarFactory(inputDto);
+
     }
 
     @Test
-    public void 입력값에_기반하여_기둥들_만들기() {
-        directionGenerator = new DownGenerator(height);
-        List<Pillar> pillars = factory.createPillar(directionGenerator);
+    public void 기둥_랜덤_만들기(){
+        generator = new RandomGenerator(height);
+        List<Pillar> pillars = factory.createPillars();
 
-        int pillarCount = (int) pillars.stream()
-                .filter(pillar -> pillar.getHeight() == height)
-                .count();
-        assertThat(pillarCount).isEqualTo(people);
-    }
-
-    @Test
-    public void 기둥방향_전부_아래로만_만들기() {
-        directionGenerator = new DownGenerator(height);
-        List<Pillar> pillars = factory.createPillar(directionGenerator);
+        showDirections(pillars);
 
         for (Pillar pillar : pillars) {
-            int downCount = (int) pillar.getDirections().stream()
-                    .filter(direction -> direction == Direction.DOWN)
-                    .count();
-            assertThat(downCount).isEqualTo(height);
+            int count = pillar.getDirections().size();
+            assertThat(count).isEqualTo(height);
         }
     }
 
-    @Test
-    public void 기둥방향_오른쪽하고_아래로만_만들기() {
-        directionGenerator = new RandomGenerator(height);
-        List<Pillar> pillars = factory.createPillar(directionGenerator);
-
-        for (Pillar pillar : pillars) {
-            int downCount = (int) pillar.getDirections().stream()
-                    .filter(direction -> 1 <= direction.getCode() && direction.getCode() <= 3)
-                    .count();
-            pillar.getDirections().stream().forEach(direction -> System.out.println(direction));
+    public void showDirections(List<Pillar> pillars) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < pillars.size(); x++) {
+                System.out.print(pillars.get(x).getDirections().get(y) + " ");
+            }
             System.out.println();
-            assertThat(downCount).isEqualTo(height);
         }
     }
 }

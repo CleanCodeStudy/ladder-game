@@ -7,7 +7,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomGenerator implements DirectionGenerator {
+public class RandomGenerator implements DirectionGenerator{
 
     private static final int ANY = 0;
     private static final int DOWN = Direction.DOWN.getCode();
@@ -18,21 +18,21 @@ public class RandomGenerator implements DirectionGenerator {
         RIGHT_AND_DOWN = getInstance();
     }
 
-    int height;
+    private int height;
 
     public RandomGenerator(int height) {
         this.height = height;
     }
 
-    @Override
     public List<Direction> createDirections() {
+
         List<Direction> directions = IntStream.rangeClosed(1, height)
                 .mapToObj(each -> createEach())
                 .collect(Collectors.toList());
         return directions;
     }
 
-    private static Direction createEach() {
+    private Direction createEach() {
         List<Integer> codes = RIGHT_AND_DOWN.keySet().stream()
                 .collect(Collectors.toList());
 
@@ -42,7 +42,7 @@ public class RandomGenerator implements DirectionGenerator {
     }
 
     private static Map<Integer, Direction> getInstance() {
-        return IntStream.rangeClosed(RIGHT,DOWN)
+        return IntStream.rangeClosed(RIGHT, DOWN)
                 .mapToObj(code -> Direction.findByCode(code))
                 .collect(Collectors.toMap(Direction::getCode, Function.identity()));
     }

@@ -3,9 +3,9 @@ package domain.direction;
 import java.util.Arrays;
 
 public enum Direction {
-    LEFT(1),
-    RIGHT(2),
-    DOWN(3);
+    RIGHT(1),
+    DOWN(2),
+    LEFT(3);
 
     private int code;
 
@@ -15,6 +15,10 @@ public enum Direction {
 
     public int getCode() {
         return code;
+    }
+
+    public boolean isRight() {
+        return this == Direction.RIGHT;
     }
 
     public static Direction findByCode(int code) {

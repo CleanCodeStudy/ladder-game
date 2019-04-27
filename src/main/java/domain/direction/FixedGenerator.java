@@ -4,18 +4,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class DownGenerator implements DirectionGenerator {
+public class FixedGenerator implements DirectionGenerator{
 
     private int height;
 
-    public DownGenerator(int height) {
+    public FixedGenerator(int height) {
         this.height = height;
     }
 
     @Override
     public List<Direction> createDirections() {
-        return IntStream.rangeClosed(1, height)
-                .mapToObj(each -> Direction.DOWN)
+
+        return IntStream.range(0,height)
+                .boxed()
+                .map(each -> Direction.DOWN)
                 .collect(Collectors.toList());
     }
 }

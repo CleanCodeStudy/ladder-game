@@ -22,10 +22,10 @@ public class RandomGeneratorTest {
     }
 
     @Test
-    public void 오른쪽_아래_5개_방향뭉치_만들기() {
+    public void 다섯개_방향뭉치_만들기() {
         int size = 5;
-        DirectionGenerator directionGenerator = new RandomGenerator(size);
-        List<Direction> directions = directionGenerator.createDirections();
+        RandomGenerator randomGenerator = new RandomGenerator(size);
+        List<Direction> directions = randomGenerator.createDirections();
 
         assertThat(directions.size()).isEqualTo(size);
 
