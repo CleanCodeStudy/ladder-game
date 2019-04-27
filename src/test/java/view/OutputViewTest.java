@@ -22,13 +22,13 @@ public class OutputViewTest {
 
     @Before
     public void setUp() throws Exception {
-        names = "kim,lee,longest,park,choi";
-        height = 7;
+        names = "take,my,horse,to,the,old,town,road";
+        height = 10;
         inputDto = new UserInputDto(names, height);
         people = inputDto.getNames().size();
         factory = new PillarFactory(inputDto);
         ladder = new Ladder(factory);
-        outputView = new OutputView();
+        outputView = new OutputView(ladder);
     }
 
     @Test
@@ -39,13 +39,11 @@ public class OutputViewTest {
 
     @Test
     public void 이름_출력하기() {
-        outputView.showNames(ladder);
-        int width = "longest".length() - "kim".length();
-        assertThat(outputView.getWidth(ladder.getNames())).isEqualTo(width);
+        outputView.showNames();
     }
 
     @Test
     public void 사다리_출력(){
-        outputView.showLadder(ladder);
+        outputView.showLadder();
     }
 }
