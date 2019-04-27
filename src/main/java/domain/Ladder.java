@@ -25,7 +25,6 @@ public class Ladder {
         return height;
     }
 
-
     public List<String> getNames() {
         return pillars.stream()
                 .map(Pillar::getUserName)

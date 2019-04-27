@@ -13,6 +13,7 @@ public class OutputView {
     private static final String RIGHT = "├";
     private static final String HORIZON = "─";
     private static final String BLANK = " ";
+    private static final String LINE_BREAK = "\n";
 
     private Ladder ladder;
 
@@ -50,7 +51,7 @@ public class OutputView {
 
         for (int y = 0; y < ladder.getHeight(); y++) {
             sb.append(drawPillar(y));
-            sb.append("\n");
+            sb.append(LINE_BREAK);
         }
         System.out.println(sb.toString());
     }
