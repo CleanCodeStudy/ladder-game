@@ -7,7 +7,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomGenerator implements DirectionGenerator{
+public class RandomGenerator implements DirectionGenerator {
 
     private static final int ANY = 0;
     private static final int DOWN = Direction.DOWN.getCode();
