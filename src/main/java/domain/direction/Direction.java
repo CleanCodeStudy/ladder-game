@@ -1,11 +1,11 @@
-package domain;
+package domain.direction;
 
 import java.util.Arrays;
 
 public enum Direction {
-    DOWN(1),
-    LEFT(2),
-    RIGHT(3);
+    LEFT(1),
+    RIGHT(2),
+    DOWN(3);
 
     private int code;
 

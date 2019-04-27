@@ -1,25 +1,29 @@
 package domain;
 
+import domain.direction.Direction;
+import domain.direction.DirectionGenerator;
+
 import java.util.List;
 
 public class Pillar {
 
-    private int id;
-    private int height;
+    private User user;
     private List<Direction> directions;
 
-    public Pillar(int id, int height) {
-        this.id = id;
-        this.height = height;
+    public Pillar(User user, DirectionGenerator directionGenerator) {
+        this.user = user;
+        this.directions = directionGenerator.createDirections();
     }
 
-    public int getId() {
-        return id;
+    public String getUserName() {
+        return user.getName();
     }
 
     public int getHeight() {
-        return height;
+        return directions.size();
     }
 
-
+    public List<Direction> getDirections() {
+        return directions;
+    }
 }
