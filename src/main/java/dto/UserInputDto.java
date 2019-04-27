@@ -12,9 +12,11 @@ public class UserInputDto {
     List<String> names;
     int height;
 
-    public UserInputDto(String name, int height) {
-        this.names = Arrays.asList(name.split(DELIMITER));
+    public UserInputDto(String names, int height) {
+
+        this.names = Arrays.asList(names.split(DELIMITER));
         this.height = height;
+        validateInput();
     }
 
     public List<String> getNames() {
@@ -23,6 +25,13 @@ public class UserInputDto {
 
     public int getHeight() {
         return height;
+    }
+
+    private void validateInput() {
+        int people = names.size();
+        if (people > height - 1) {
+            throw new IllegalArgumentException("잘못된 높이 입력.");
+        }
     }
 
     public List<User> toEntities() {
