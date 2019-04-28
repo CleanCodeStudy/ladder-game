@@ -1,6 +1,12 @@
+import java.util.Random;
+
 public class Point {
     private Integer column;
     private LinkedType linkedType;
+
+    public Point(int i){
+        this.column = i;
+    }
 
     private Point(Integer column,LinkedType linkedType) {
         this.column = column;
@@ -15,7 +21,7 @@ public class Point {
         return column;
     }
 
-    public static Point createRightLinkedPoint(Integer column){
+    public static Point createRightLinkedPoint(Point previous,Integer column){
         return new Point(column,LinkedType.RIGHT);
     }
 
@@ -26,5 +32,6 @@ public class Point {
     public static Point createNotLinkedPoint(Integer column){
         return new Point(column,LinkedType.NONE);
     }
+
 
 }
