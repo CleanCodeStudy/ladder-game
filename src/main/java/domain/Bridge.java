@@ -1,3 +1,5 @@
+package domain;
+
 public class Bridge {
     private Integer location;
     private LinkedType linkPillarDirection;
