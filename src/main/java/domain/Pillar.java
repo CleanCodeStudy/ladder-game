@@ -1,23 +1,19 @@
 package domain;
 
-import data.InputDatas;
+import data.InputData;
 import util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Pillar {
     private List<Bridge> bridges;
     private Integer pillarNum;
 
-    public Pillar(InputDatas inputDatas, Pillar previousPillar) { //자동으로 다리생성
+    public Pillar(InputData inputData, Pillar previousPillar) { //자동으로 다리생성
         pillarNum = myPillarNum(previousPillar);
-        bridges = createRightBridge(Util.createRandomBooleans(inputDatas.getLadderHeight()));
-    }
-
-    public Pillar(List<Boolean> presenceBridges, Pillar previousPillar) { //수동으로 다리생성
-        pillarNum = myPillarNum(previousPillar);
-        bridges = createRightBridge(presenceBridges);
+        bridges = createRightBridge(Util.createRandomIntegers(inputData.getLadderHeight()));
     }
 
     public Integer getPillarNum() {
@@ -34,36 +30,29 @@ public class Pillar {
         return previousPillar.getPillarNum() + 1;
     }
 
-//    private List<domain.Bridge> LinkBrigedWithPreviousPillars (domain.Pillar previousPillar){
-//        previousPillar.getBridges();
-//    }
-
-//    public List<domain.Bridge> getRightLinkingBrideges(){
-//
-//    }
-//
-//    public List<domain.Bridge> getLeftLinkingBrdiges(){
-//
-//    }
-
-//    private List<domain.Bridge> createRightBridge(){
-//
-//    }
-
-    private List<Bridge> createRightBridge(List<Boolean> locationsOfBridge) {
-        int ladderHeight = locationsOfBridge.size();
-        List<Bridge> bridges = new ArrayList<>();
-        for (int i = 0; i < ladderHeight; i++) {
-            if (locationsOfBridge.get(i) == true)
-                bridges.add(createOneRightBridge(i));
-        }
-        return bridges;
-//        return locationsOfBridge.stream()
-//                .map(location -> locationsOfBridge.indexOf(location))
-//                .map(intLocation -> createOneRightBridge(intLocation))
-//                .collect(Collectors.toList());
+    public List<Integer> getBridgesLocations(){
+        return bridges.stream()
+                .map(b->b.getLocation())
+                .collect(Collectors.toList());
     }
 
+    public List<Integer> getBridgesDirectionLocation(LinkedType linkedType){
+        return bridges.stream()
+                .filter(b->b.getLinkPillarDirection() == linkedType)
+                .map(bridge->bridge.getLocation())
+                .collect(Collectors.toList());
+    }
+
+//    private List<Bridge> createBridges(){
+//
+//
+//    }
+
+    private List<Bridge> createRightBridge(List<Integer> locationsOfBridge) {
+        return locationsOfBridge.stream()
+                .map(b -> createOneRightBridge(b))
+                .collect(Collectors.toList());
+    }
 
     private Bridge createOneRightBridge(Integer location) {
         return (new Bridge(location, LinkedType.RIGHT));
