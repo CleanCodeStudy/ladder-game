@@ -1,7 +1,7 @@
 package view;
 
 import domain.Ladder;
-import domain.PillarFactory;
+import domain.LadderFactory.RandomLadderFactory;
 import dto.UserInputDto;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class OutputViewTest {
 
     String names;
-    PillarFactory factory;
+    RandomLadderFactory factory;
     int people;
     int height;
     UserInputDto inputDto;
@@ -26,7 +26,7 @@ public class OutputViewTest {
         height = 10;
         inputDto = new UserInputDto(names, height);
         people = inputDto.getNames().size();
-        factory = new PillarFactory(inputDto);
+        factory = new RandomLadderFactory(inputDto);
         ladder = new Ladder(factory);
         outputView = new OutputView(ladder);
     }

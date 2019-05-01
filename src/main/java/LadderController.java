@@ -1,21 +1,22 @@
 import domain.Ladder;
-import domain.PillarFactory;
+import domain.LadderFactory.RandomLadderFactory;
 import dto.UserInputDto;
 import view.InputView;
 import view.OutputView;
 
 public class LadderController {
 
-    private static InputView inptView = new InputView(System.in);
+    private static InputView inputView = new InputView(System.in);
+    private static OutputView outputView;
 
     public static void main(String[] args) {
-        UserInputDto inputDto = inptView.getInputDto();
+        UserInputDto inputDto = inputView.getInputDto();
 
-        PillarFactory factory = new PillarFactory(inputDto);
+        RandomLadderFactory factory = new RandomLadderFactory(inputDto);
 
-        Ladder ladder = new Ladder(factory);
+        Ladder ladder = factory.createLadder();
 
-        OutputView outputView = new OutputView(ladder);
+        outputView = new OutputView(ladder);
 
         outputView.showLadder();
     }

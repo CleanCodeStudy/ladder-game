@@ -59,28 +59,34 @@ public class OutputView {
     private String drawPillar(int y) {
         StringBuilder sb = new StringBuilder();
         for (int x = 0; x < ladder.getNames().size(); x++) {
-            sb.append(getDirect(ladder.getPillarDirection(x, y)));
+            sb.append(getStick(ladder.getDirection(x, y)));
         }
         return sb.toString();
     }
 
-    //여기가 문제네
-    private String getDirect(Direction direction) {
-        int width = getMax(ladder.getNames());
+    private String getStick(Direction direction) {
         StringBuilder sb = new StringBuilder();
-        if (direction == Direction.LEFT) {
-            sb.append(LEFT);
+        int width = getMax(ladder.getNames());
+        sb.append(findStick(direction));
+        if (direction != Direction.RIGHT) {
             sb.append(addWidth(width, BLANK));
+            return sb.toString();
         }
+        sb.append(addWidth(width, HORIZON));
+        return sb.toString();
+    }
+
+    private String findStick(Direction direction) {
         if (direction == Direction.RIGHT) {
-            sb.append(RIGHT);
-            sb.append(addWidth(width, HORIZON));
+            return RIGHT;
+        }
+        if (direction == Direction.LEFT) {
+            return LEFT;
         }
         if (direction == Direction.DOWN) {
-            sb.append(DOWN);
-            sb.append(addWidth(width, BLANK));
+            return DOWN;
         }
-        return sb.toString();
+        throw new RuntimeException();
     }
 
     private String addWidth(int width, String add) {

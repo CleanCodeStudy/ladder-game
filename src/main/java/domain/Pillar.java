@@ -1,51 +1,48 @@
 package domain;
 
-import domain.direction.Direction;
 import domain.direction.DirectionGenerator;
-import domain.direction.FixedGenerator;
 
 import java.util.List;
 
 public class Pillar {
 
-    private static final String DEFAULT_NAME = "default";
-
     private User user;
-    private List<Direction> directions;
+    private List<Point> points;
 
-    private Pillar(DirectionGenerator generator) {
-        this.user = new User(DEFAULT_NAME);
-        this.directions = generator.createDirections();
+    public static Pillar createFirst(String name, int height) {
+        return new Pillar(new User(name), DirectionGenerator.createFirst(height));
     }
 
-    public Pillar(User user, DirectionGenerator generator) {
+    public static Pillar createMiddle(String name, Pillar before) {
+        return new Pillar(new User(name), DirectionGenerator.createMiddle(before.points));
+    }
+
+    public static Pillar createLast(String name, Pillar before) {
+        return new Pillar(new User(name), DirectionGenerator.createLast(before.points));
+    }
+
+    public Pillar(User user, List<Point> points) {
         this.user = user;
-        this.directions = generator.createDirections();
+        this.points = points;
     }
 
     public String getUserName() {
         return user.getName();
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
+
     public int getHeight() {
-        return directions.size();
+        return points.size();
     }
 
-    public List<Direction> getDirections() {
-        return directions;
+    public int getX() {
+        return points.get(0).getX();
     }
 
-    public int getRightAmount() {
-        return (int) this.directions.stream()
-                .filter(Direction::isRight)
-                .count();
-    }
-
-    public static Pillar getDownPillar(int height) {
-        return new Pillar(new FixedGenerator(height));
-    }
-
-    public void changeDirection(int idx, Direction direction) {
-        this.directions.set(idx, direction);
+    public boolean isEqualToX(int x) {
+        return getX() == x;
     }
 }

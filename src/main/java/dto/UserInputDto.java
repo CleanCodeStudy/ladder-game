@@ -29,8 +29,11 @@ public class UserInputDto {
 
     private void validateInput() {
         int people = names.size();
-        if (people > height) {
-            throw new IllegalArgumentException("잘못된 높이 입력.");
+        if (people < 2) {
+            throw new IllegalArgumentException("2명 이상 입력하세요.");
+        }
+        if (height < 1) {
+            throw new IllegalArgumentException("높이를 1이상 입력하세요.");
         }
     }
 
