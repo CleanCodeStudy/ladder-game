@@ -35,6 +35,7 @@ public class Pillar {
                 .collect(Collectors.toList());
     }
 
+
     public List<Integer> getBridgesDirectionLocation(LinkedType linkedType) {
         return bridges.stream()
                 .filter(b -> b.getLinkPillarDirection() == linkedType)
