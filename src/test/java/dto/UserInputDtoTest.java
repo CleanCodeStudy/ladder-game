@@ -39,4 +39,21 @@ public class UserInputDtoTest {
             assertThat(users.get(i).getName()).contains(collectNames.get(i));
         }
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 두명미만_참여_익셉션() {
+        String names = "pobi,honux,crong,jk";
+        UserInputDto userInputDto = new UserInputDto(names, height);
+
+        names = "pobi";
+        userInputDto = new UserInputDto(names, height);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 길이_1미만_입력(){
+        String names = "pobi,honux,crong,jk";
+
+        UserInputDto userInputDto = new UserInputDto(names, height);
+        userInputDto = new UserInputDto(names, 0);
+    }
 }
