@@ -6,8 +6,18 @@ public class Location {
     private int y;
 
     public Location(int x, int y) {
+        validate(x, y);
         this.x = x;
         this.y = y;
+    }
+
+    private void validate(int x, int y) {
+        if (x < 0) {
+            throw new IllegalArgumentException("x error");
+        }
+        if (y < 0) {
+            throw new IllegalArgumentException("y error");
+        }
     }
 
     public Location(Location location) {

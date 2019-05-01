@@ -7,7 +7,7 @@ import dto.UserInputDto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomLadderFactory implements LadderFactory{
+public class RandomLadderFactory implements LadderFactory {
 
     private List<String> names;
     private int height;

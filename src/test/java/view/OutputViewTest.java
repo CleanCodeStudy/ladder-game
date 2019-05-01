@@ -43,7 +43,7 @@ public class OutputViewTest {
     }
 
     @Test
-    public void 사다리_출력(){
+    public void 사다리_출력() {
         outputView.showLadder();
     }
 }

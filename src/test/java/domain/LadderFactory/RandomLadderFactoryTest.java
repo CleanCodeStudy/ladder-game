@@ -1,6 +1,5 @@
 package domain.LadderFactory;
 
-import domain.LadderFactory.RandomLadderFactory;
 import domain.Pillar;
 import dto.UserInputDto;
 import org.junit.Before;

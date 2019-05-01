@@ -46,13 +46,13 @@ public class FixedLadderFactoryTest {
         List<Point> points = first.getPoints();
 
 
-        for(int i=0;i<height/3;i++){
+        for (int i = 0; i < height / 3; i++) {
             assertThat(points.get(i).getDirection()).isEqualTo(Direction.RIGHT);
         }
-        for(int i=height/3;i<height/3*2;i++){
+        for (int i = height / 3; i < height / 3 * 2; i++) {
             assertThat(points.get(i).getDirection()).isEqualTo(Direction.DOWN);
         }
-        for(int i=height/3*2;i<height;i++){
+        for (int i = height / 3 * 2; i < height; i++) {
             assertThat(points.get(i).getDirection()).isEqualTo(Direction.LEFT);
         }
     }

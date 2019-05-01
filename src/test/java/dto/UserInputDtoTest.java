@@ -50,7 +50,7 @@ public class UserInputDtoTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void 길이_1미만_입력(){
+    public void 길이_1미만_입력() {
         String names = "pobi,honux,crong,jk";
 
         UserInputDto userInputDto = new UserInputDto(names, height);

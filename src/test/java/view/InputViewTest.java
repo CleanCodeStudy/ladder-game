@@ -7,7 +7,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
 
 public class InputViewTest {
 
@@ -27,7 +26,7 @@ public class InputViewTest {
     }
 
     @Test
-    public void 사다리높이_입력(){
+    public void 사다리높이_입력() {
         String height = "5";
         inputStream = new ByteArrayInputStream(height.getBytes());
         inputView = new InputView(inputStream);
