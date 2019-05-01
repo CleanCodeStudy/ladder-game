@@ -9,7 +9,6 @@ public class Bridge {
         this.linkPillarDirection = linkPillarDirection;
     }
 
-
     public Integer getLocation() {
         return location;
     }
@@ -18,17 +17,4 @@ public class Bridge {
         return linkPillarDirection;
     }
 
-//    public Point nextPoint(int currentColumn) {
-//        Point point = points.get(currentColumn);
-//        if (point.getLinkedType() == LinkedType.RIGHT) {
-//            Point nextPoint = points.get(currentColumn + 1);
-//            return nextPoint;
-//        }
-//        if (point.getLinkedType() == LinkedType.LEFT) {
-//            Point nextPoint = points.get(currentColumn-1);
-//            return nextPoint;
-//        }
-//
-//        return point;
-//    }
 }
