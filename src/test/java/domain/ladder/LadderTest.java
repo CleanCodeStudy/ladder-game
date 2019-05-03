@@ -1,7 +1,6 @@
 package domain.ladder;
 
 import data.InputData;
-import domain.ladder.Ladder;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -16,6 +15,14 @@ public class LadderTest {
         assertEquals((int) ladder.getWidth(), ladder.getPillars().size());
     }
 
+    @Test
+    public void Pillar_NUM_에따라_찾기() {
+        InputData inputData = new InputData("pobi,honux,crong,jk", 4);
+        Ladder ladder = new Ladder(inputData);
+
+        Pillar p = ladder.getPillarByNum(1);
+        assertEquals((Integer) 1, p.getPillarNum());
+    }
 
 //        @Test
 //    public void 이전기둥불러오기_left_pillar() {

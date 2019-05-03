@@ -9,6 +9,7 @@ import static util.Util.createRandomIntegers;
 import static util.Util.createRandomIntegersWithRestriction;
 
 public class Pillar {
+    public static final int MINIMUM_PILLAR_NUM = 0;
     private List<Bridge> bridges;
     private Integer pillarNum;
 
@@ -27,7 +28,7 @@ public class Pillar {
 
     private Integer nowPillarNum(Pillar previousPillar) {
         if (previousPillar == null)
-            return Ladder.MINIMUM_PILLAR_NUM;
+            return MINIMUM_PILLAR_NUM;
         return previousPillar.getPillarNum() + 1;
     }
 
@@ -54,7 +55,7 @@ public class Pillar {
 
 
     private boolean isLastPillar(InputData inputData, Pillar previousPillar) {
-        if (inputData.getLadderWidth() - previousPillar.getPillarNum() == 1)
+        if (inputData.getLadderWidth() - previousPillar.getPillarNum() == 2)
             return true;
         return false;
     }

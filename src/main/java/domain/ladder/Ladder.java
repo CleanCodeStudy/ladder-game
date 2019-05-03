@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Ladder {
 
-    public static final int MINIMUM_PILLAR_NUM = 1;
     private List<Pillar> pillars;
     private Integer width;
     private Integer height;
@@ -22,12 +21,19 @@ public class Ladder {
         List<Pillar> pillars = new ArrayList<>();
         Pillar previous = new Pillar(inputData, null);
         pillars.add(previous);
-        for (int i = MINIMUM_PILLAR_NUM; i <= width - 1; i++) {
+        for (int i = 1; i < width; i++) {
             Pillar now = new Pillar(inputData, previous);
             pillars.add(now);
             previous = now;
         }
         return pillars;
+    }
+
+    public Pillar getPillarByNum(Integer pillarNum) {
+        return pillars.stream()
+                .filter(p -> p.getPillarNum() == pillarNum)
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Pillar> getPillars() {
@@ -41,23 +47,5 @@ public class Ladder {
     public Integer getHeight() {
         return height;
     }
-
-//    public Pillar getPreviousPillar(Pillar pillar) {
-//        if (MINIMUM_PILLAR_NUM <= pillar.getPillarNum())
-//            return null;
-//        return pillars.stream()
-//                .filter(p -> p.getPillarNum() == pillar.getPillarNum() - 1)
-//                .findFirst()
-//                .orElse(null);
-//    }
-//
-//    public Pillar getNextPillar(Pillar pillar) {
-//        if (MINIMUM_PILLAR_NUM <= pillar.getPillarNum())
-//            return null;
-//        return pillars.stream()
-//                .filter(p -> p.getPillarNum() == pillar.getPillarNum() + 1)
-//                .findFirst()
-//                .orElse(null);
-//    }
 
 }

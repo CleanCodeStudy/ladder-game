@@ -30,7 +30,7 @@ public class Util {
                 .collect(Collectors.toList());
     }
 
-    public static List<String> separateUserName(String participants){
+    public static List<String> separateUserName(String participants) {
         String[] users = participants.split(DELIMETER);
         return Arrays.asList(users);
     }

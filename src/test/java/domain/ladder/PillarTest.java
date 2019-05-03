@@ -1,8 +1,6 @@
 package domain.ladder;
 
 import data.InputData;
-import domain.ladder.LinkedType;
-import domain.ladder.Pillar;
 import org.junit.Test;
 
 import java.util.List;
@@ -15,7 +13,7 @@ public class PillarTest {
     public void 첫번째기둥_넘버만들기() {
         InputData inputData = new InputData("pobi,honux,crong,jk", 3);
         Pillar p = new Pillar(inputData, null);
-        assertEquals((Integer) 1, p.getPillarNum());
+        assertEquals((Integer) 0, p.getPillarNum());
     }
 
     @Test
@@ -24,7 +22,7 @@ public class PillarTest {
         Pillar p = new Pillar(inputData, null);
         Pillar p1 = new Pillar(inputData, p);
 
-        assertEquals((Integer) 2, p1.getPillarNum());
+        assertEquals((Integer) 1, p1.getPillarNum());
     }
 
     @Test
@@ -35,7 +33,7 @@ public class PillarTest {
         Pillar p2 = new Pillar(inputData, p1);
         Pillar p3 = new Pillar(inputData, p2);
 
-        assertEquals((Integer) 4, p3.getPillarNum());
+        assertEquals((Integer) 3, p3.getPillarNum());
     }
 
     @Test
@@ -91,8 +89,8 @@ public class PillarTest {
     public void 이전기둥확인해서_넘버만들기() {
         InputData inputData = new InputData("pobi,honux,crong,jk", 3);
         Pillar p = new Pillar(inputData, null);
-        Pillar p2 = new Pillar(inputData, p);
-        assertEquals((Integer) 2, p2.getPillarNum());
+        Pillar p1 = new Pillar(inputData, p);
+        assertEquals((Integer) 1, p1.getPillarNum());
     }
 
     @Test
