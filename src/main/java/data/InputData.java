@@ -2,16 +2,29 @@ package data;
 
 public class InputData {
 
-    private int pillarCount;
-    private int ladderHeight;
+    public static final String DELIMETER = ",";
 
-    public InputData(int pillarCount, int ladderHeight) {
-        this.pillarCount = pillarCount;
+    private int ladderWidth;
+    private int ladderHeight;
+    private String participants;
+
+    public InputData(String participants, int ladderHeight) {
+        this.ladderWidth = ladderWidth(participants);
         this.ladderHeight = ladderHeight;
+        this.participants = participants;
     }
 
-    public int getPillarCount() {
-        return pillarCount;
+    private int ladderWidth(String participants) {
+        String[] parts = participants.split(DELIMETER);
+        return parts.length;
+    }
+
+    public String getParticipants() {
+        return participants;
+    }
+
+    public int getLadderWidth() {
+        return ladderWidth;
     }
 
     public int getLadderHeight() {

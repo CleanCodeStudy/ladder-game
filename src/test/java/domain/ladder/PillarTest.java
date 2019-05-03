@@ -1,6 +1,8 @@
+package domain.ladder;
+
 import data.InputData;
-import domain.LinkedType;
-import domain.Pillar;
+import domain.ladder.LinkedType;
+import domain.ladder.Pillar;
 import org.junit.Test;
 
 import java.util.List;
@@ -11,14 +13,14 @@ public class PillarTest {
 
     @Test
     public void 첫번째기둥_넘버만들기() {
-        InputData inputData = new InputData(4, 3);
+        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
         Pillar p = new Pillar(inputData, null);
         assertEquals((Integer) 1, p.getPillarNum());
     }
 
     @Test
     public void 가운데기둥_넘버만들기() {
-        InputData inputData = new InputData(4, 3);
+        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
         Pillar p = new Pillar(inputData, null);
         Pillar p1 = new Pillar(inputData, p);
 
@@ -27,7 +29,7 @@ public class PillarTest {
 
     @Test
     public void 마지막기둥_넘버만들기() {
-        InputData inputData = new InputData(4, 3);
+        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
         Pillar p = new Pillar(inputData, null);
         Pillar p1 = new Pillar(inputData, p);
         Pillar p2 = new Pillar(inputData, p1);
@@ -38,7 +40,7 @@ public class PillarTest {
 
     @Test
     public void 첫번째_기둥_bridge_리스트_만들기() {
-        InputData inputData = new InputData(4, 3);
+        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
         Pillar p = new Pillar(inputData, null);
 
         System.out.println(p.getBridgesLocations());
@@ -49,7 +51,7 @@ public class PillarTest {
 
     @Test
     public void 두번째_기둥_bridge_리스트_만들기() {
-        InputData inputData = new InputData(4, 10);
+        InputData inputData = new InputData("pobi,honux,crong,jk", 10);
         Pillar p = new Pillar(inputData, null);
         Pillar p1 = new Pillar(inputData, p);
 
@@ -68,7 +70,7 @@ public class PillarTest {
 
     @Test
     public void 마지막_기둥_bridge_리스트_만들기() {
-        InputData inputData = new InputData(4, 10);
+        InputData inputData = new InputData("pobi,honux,crong,jk", 10);
         Pillar p = new Pillar(inputData, null);
         Pillar p1 = new Pillar(inputData, p);
         Pillar p2 = new Pillar(inputData, p1);
@@ -87,7 +89,7 @@ public class PillarTest {
 
     @Test
     public void 이전기둥확인해서_넘버만들기() {
-        InputData inputData = new InputData(4, 3);
+        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
         Pillar p = new Pillar(inputData, null);
         Pillar p2 = new Pillar(inputData, p);
         assertEquals((Integer) 2, p2.getPillarNum());
@@ -95,14 +97,14 @@ public class PillarTest {
 
     @Test
     public void 자동으로_오른쪽_기둥과_연결된_다리리스트_만들기() {
-        InputData inputData = new InputData(4, 3);
+        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
         Pillar p = new Pillar(inputData, null);
         assertEquals(true, p.getBridges().size() <= 3);
     }
 
     @Test
     public void 기둥에_연결된_다리의_location_값_리스트_가져오기() {
-        InputData inputData = new InputData(4, 3);
+        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
         Pillar p = new Pillar(inputData, null);
         List<Integer> bridgesLocations = p.getBridgesLocations();
         System.out.println(bridgesLocations);
@@ -111,7 +113,7 @@ public class PillarTest {
 
     @Test
     public void 기둥에_연결된_특정_방향의_다리의_location_값_리스트_가져오기() {
-        InputData inputData = new InputData(4, 3);
+        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
         Pillar p = new Pillar(inputData, null);
         List<Integer> bridgesLocations = p.getBridgesDirectionLocation(LinkedType.LEFT);
         assertEquals(0, bridgesLocations.size());

@@ -1,8 +1,8 @@
-import domain.Bridge;
-import domain.LinkedType;
+package domain.ladder;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BridgeTest {
 
@@ -17,7 +17,6 @@ public class BridgeTest {
         Bridge bridge = new Bridge(1, LinkedType.LEFT);
         assertEquals(LinkedType.LEFT, bridge.getLinkPillarDirection());
     }
-
 
 
 }

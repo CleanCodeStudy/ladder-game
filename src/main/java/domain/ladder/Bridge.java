@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 public class Bridge {
     private Integer location;

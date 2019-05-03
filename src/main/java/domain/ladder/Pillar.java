@@ -1,10 +1,12 @@
-package domain;
+package domain.ladder;
 
 import data.InputData;
-import util.Util;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static util.Util.createRandomIntegers;
+import static util.Util.createRandomIntegersWithRestriction;
 
 public class Pillar {
     private List<Bridge> bridges;
@@ -35,7 +37,6 @@ public class Pillar {
                 .collect(Collectors.toList());
     }
 
-
     public List<Integer> getBridgesDirectionLocation(LinkedType linkedType) {
         return bridges.stream()
                 .filter(b -> b.getLinkPillarDirection() == linkedType)
@@ -45,7 +46,7 @@ public class Pillar {
 
     private List<Bridge> createBridges(InputData inputData, Pillar previousPillar) {
         if (isFirstPillar(previousPillar))
-            return createRightBridges(Util.createRandomIntegers(inputData.getLadderHeight()));
+            return createRightBridges(createRandomIntegers(inputData.getLadderHeight()));
         if (isLastPillar(inputData, previousPillar))
             return createLeftBridges(previousPillar);
         return createLeftRightBridges(previousPillar, inputData.getLadderHeight());
@@ -53,7 +54,7 @@ public class Pillar {
 
 
     private boolean isLastPillar(InputData inputData, Pillar previousPillar) {
-        if (inputData.getPillarCount() - previousPillar.getPillarNum() == 1)
+        if (inputData.getLadderWidth() - previousPillar.getPillarNum() == 1)
             return true;
         return false;
     }
@@ -67,7 +68,7 @@ public class Pillar {
     private List<Bridge> createLeftRightBridges(Pillar previous, Integer height) {
         List<Integer> previousLocations = previous.getBridgesDirectionLocation(LinkedType.RIGHT);
         List<Bridge> nowPillarsBridges = createLeftBridges(previous);
-        List<Integer> rightBridgeNumbers = Util.createRandomIntegersWithRestriction(height, previousLocations);
+        List<Integer> rightBridgeNumbers = createRandomIntegersWithRestriction(height, previousLocations);
         nowPillarsBridges.addAll(createRightBridges(rightBridgeNumbers));
         return nowPillarsBridges;
     }

@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import data.InputData;
 
@@ -13,7 +13,7 @@ public class Ladder {
     private Integer height;
 
     public Ladder(InputData inputData) {
-        this.width = inputData.getPillarCount();
+        this.width = inputData.getLadderWidth();
         this.height = inputData.getLadderHeight();
         this.pillars = createLadder(inputData);
     }
@@ -42,13 +42,22 @@ public class Ladder {
         return height;
     }
 
-    public Pillar getPreviousPillar(Pillar pillar) {
-        if (MINIMUM_PILLAR_NUM <= pillar.getPillarNum())
-            return null;
-        return pillars.stream()
-                .filter(p -> p.getPillarNum() == pillar.getPillarNum() - 1)
-                .findAny()
-                .orElse(null);
-    }
+//    public Pillar getPreviousPillar(Pillar pillar) {
+//        if (MINIMUM_PILLAR_NUM <= pillar.getPillarNum())
+//            return null;
+//        return pillars.stream()
+//                .filter(p -> p.getPillarNum() == pillar.getPillarNum() - 1)
+//                .findFirst()
+//                .orElse(null);
+//    }
+//
+//    public Pillar getNextPillar(Pillar pillar) {
+//        if (MINIMUM_PILLAR_NUM <= pillar.getPillarNum())
+//            return null;
+//        return pillars.stream()
+//                .filter(p -> p.getPillarNum() == pillar.getPillarNum() + 1)
+//                .findFirst()
+//                .orElse(null);
+//    }
 
 }
