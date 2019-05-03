@@ -1,37 +1,29 @@
-import java.util.Random;
-
 public class Point {
     private Integer column;
-    private LinkedType linkedType;
+    private LinkedStatus linkedStatus;
 
-    public Point(int i){
-        this.column = i;
-    }
-
-    private Point(Integer column,LinkedType linkedType) {
+    public Point(Integer column) {
         this.column = column;
-        this.linkedType = linkedType;
     }
 
-    public LinkedType getLinkedType() {
-        return linkedType;
+    public Point(Integer column, LinkedStatus linkedStatus) {
+        this.column = column;
+        this.linkedStatus = linkedStatus;
+    }
+
+    public boolean isRightLinked(){
+        return linkedStatus == LinkedStatus.RIGHT;
+    }
+
+    public boolean isLinked() {
+        return linkedStatus == LinkedStatus.RIGHT || linkedStatus == LinkedStatus.LEFT;
     }
 
     public int getColumn() {
         return column;
     }
 
-    public static Point createRightLinkedPoint(Point previous,Integer column){
-        return new Point(column,LinkedType.RIGHT);
+    public boolean isLast(int playerNum) {
+        return column + 1 == playerNum;
     }
-
-    public static Point createLeftLinkedPoint(Integer column){
-        return new Point(column,LinkedType.LEFT);
-    }
-
-    public static Point createNotLinkedPoint(Integer column){
-        return new Point(column,LinkedType.NONE);
-    }
-
-
 }
