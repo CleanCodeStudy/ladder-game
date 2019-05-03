@@ -2,8 +2,9 @@ public class Point {
     private Integer column;
     private LinkedStatus linkedStatus;
 
-    public Point(Integer column) {
-        this.column = column;
+    public Point(LinkedStatus status) {
+        this.column = 1;
+        this.linkedStatus = status;
     }
 
     public Point(Integer column, LinkedStatus linkedStatus) {

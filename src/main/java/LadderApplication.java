@@ -1,12 +1,11 @@
 public class LadderApplication {
     public static void main(String[] args) {
-        LadderGame ladderGame = new LadderGame(inputUap(),new LadderMaker());
-        OutView.draw();
+        Endpoint endpoint = InputView.inputEndPoint();
+        LadderOption option = new LadderOption(InputView.inputHeight(), endpoint.getPlayerNum());
 
-
+        OutView.draw(LadderMaker.generateLadder(option),endpoint.toEntityPrizes(),endpoint.toEntityUsers());
     }
 
-    private static UAP inputUap(){
-        return InputView.inputUAP().toEntity();
-    }
+
+
 }

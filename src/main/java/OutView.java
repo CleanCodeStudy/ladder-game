@@ -2,9 +2,19 @@ import java.util.List;
 
 public class OutView {
 
-    public static void draw(LadderGame game){
-         Ladder ladder = game.getLadder();
+    public static void draw(Ladder ladder,PrizeCollection prizes, UserCollection users){
+         drawUser(users.getUsers());
          drawBridges(ladder.getBridges());
+         drawPrize(prizes.getPrizes());
+    }
+
+    private static void drawUser(List<User> users){
+        for (User user : users) {
+            System.out.print(user.getName());
+            System.out.print("     ");
+        }
+
+        System.out.println();
     }
 
     private static void drawBridges(List<Bridge> bridges){
@@ -28,6 +38,11 @@ public class OutView {
         return  "     ";
     }
 
-
+    private static void drawPrize(List<Prize> prizes){
+        for (Prize prize: prizes) {
+            System.out.print(prize.getPrize());
+            System.out.print("     ");
+        }
+    }
 
 }

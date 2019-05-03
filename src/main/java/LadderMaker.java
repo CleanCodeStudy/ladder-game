@@ -2,36 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderMaker {
-    public  Ladder generateLadder(int height, int playerNum){
+
+    private LadderMaker() {
+    }
+
+    public static Ladder generateLadder(LadderOption option){
         List<Bridge> bridges = new ArrayList<>();
-        for (int i = 1; i <=height; i++) {
-            bridges.add(new Bridge(height,generatePoint(playerNum)));
+        for (int i = 1; i <=option.getHeight(); i++) {
+            bridges.add(new Bridge(option.getHeight(), generateLine(option.getPlayerNum())));
         }
         return new Ladder(bridges);
     }
 
-    private List<Point> generatePoint(int playerNum) {
-        List<Point> points = new ArrayList<>();
-
-        Point previous = null;
-        for (int i = 1; i <= playerNum; i++) {
-            Point current = generate(previous,playerNum);
-            points.add(current);
-            previous = current;
-        }
-        return points;
+    private static List<Point> generateLine(int playerNum) {
+        return new LineMaker().generateLine(playerNum);
     }
-
-    private Point generate(Point previous, int playerNum){
-        if(previous == null){
-            return new Point(1,LinkedStatus.ofStart());
-        }
-
-        if(previous.isLast(playerNum)){
-            return new Point(playerNum,LinkedStatus.ofLast(previous));
-        }
-
-        return new Point(previous.getColumn()+1,LinkedStatus.ofRandom(previous));
-    }
-
 }
