@@ -36,10 +36,7 @@ public class OutView {
     }
 
     private static String drawLine(Point point){
-        if(point.isRightLinked()){
-            return "-----";
-        }
-        return  "     ";
+        return point.isLinked() ?  "-----" : "     ";
     }
 
     private static void drawPrize(List<Prize> prizes){

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LineMaker {
-    List<Point> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
 
     public List<Point> generateLine(int playerNum) {
         addFirstPoint();

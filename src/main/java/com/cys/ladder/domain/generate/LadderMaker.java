@@ -7,8 +7,7 @@ import java.util.List;
 
 public class LadderMaker {
 
-    private LadderMaker() {
-    }
+    private LadderMaker() {}
 
     public static Ladder generateLadder(LadderOption option){
         List<Bridge> bridges = new ArrayList<>();
