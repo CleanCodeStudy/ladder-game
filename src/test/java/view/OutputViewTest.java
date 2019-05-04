@@ -27,7 +27,7 @@ public class OutputViewTest {
         inputDto = new UserInputDto(names, height);
         people = inputDto.getNames().size();
         factory = new RandomLadderFactory(inputDto);
-        ladder = new Ladder(factory);
+        ladder = new Ladder(factory.createPillars());
         outputView = new OutputView(ladder);
     }
 

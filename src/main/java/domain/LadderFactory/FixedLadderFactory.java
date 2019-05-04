@@ -72,6 +72,6 @@ public class FixedLadderFactory implements LadderFactory {
     }
 
     public Ladder createLadder() {
-        return new Ladder(this);
+        return new Ladder(createPillars());
     }
 }

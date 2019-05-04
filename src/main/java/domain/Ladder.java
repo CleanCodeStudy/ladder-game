@@ -10,8 +10,8 @@ public class Ladder {
 
     private List<Pillar> pillars;
 
-    public Ladder(LadderFactory factory) {
-        this.pillars = factory.createPillars();
+    public Ladder(List<Pillar> pillars) {
+        this.pillars = pillars;
     }
 
     public Direction getDirection(int x, int y) {

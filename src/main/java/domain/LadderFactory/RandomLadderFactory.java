@@ -38,6 +38,6 @@ public class RandomLadderFactory implements LadderFactory {
     }
 
     public Ladder createLadder() {
-        return new Ladder(this);
+        return new Ladder(createPillars());
     }
 }
