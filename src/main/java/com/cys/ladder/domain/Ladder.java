@@ -1,3 +1,7 @@
+package com.cys.ladder.domain;
+
+import com.cys.ladder.domain.Bridge;
+
 import java.util.List;
 
 public class Ladder {

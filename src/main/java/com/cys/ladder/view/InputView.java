@@ -1,3 +1,7 @@
+package com.cys.ladder.view;
+
+import com.cys.ladder.domain.Endpoint;
+
 import java.util.Scanner;
 
 public class InputView {

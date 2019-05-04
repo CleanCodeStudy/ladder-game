@@ -1,3 +1,8 @@
+package com.cys.ladder.domain.generate;
+
+import com.cys.ladder.LinkedStatus;
+import com.cys.ladder.domain.Point;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,3 +1,5 @@
+package com.cys.ladder.domain;
+
 public class User {
     private String name;
     private Integer location;

@@ -1,3 +1,5 @@
+package com.cys.ladder.domain;
+
 public class Prize {
     private String prize;
     private Integer location;

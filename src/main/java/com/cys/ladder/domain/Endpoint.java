@@ -1,3 +1,5 @@
+package com.cys.ladder.domain;
+
 import java.util.Arrays;
 import java.util.List;
 

@@ -1,6 +1,6 @@
+import com.cys.ladder.LinkedStatus;
+import com.cys.ladder.domain.Point;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class PointTest {
 

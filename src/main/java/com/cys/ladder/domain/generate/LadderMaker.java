@@ -1,3 +1,7 @@
+package com.cys.ladder.domain.generate;
+
+import com.cys.ladder.domain.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,3 +1,5 @@
+package com.cys.ladder.domain.generate;
+
 public class LadderOption {
     private int Height;
     private int playerNum;

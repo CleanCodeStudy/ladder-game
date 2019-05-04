@@ -1,3 +1,7 @@
+package com.cys.ladder.domain;
+
+import com.cys.ladder.LinkedStatus;
+
 public class Point {
     private Integer column;
     private LinkedStatus linkedStatus;

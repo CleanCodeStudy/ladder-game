@@ -1,3 +1,7 @@
+package com.cys.ladder;
+
+import com.cys.ladder.domain.Point;
+
 import java.util.Arrays;
 import java.util.Random;
 

@@ -1,8 +1,12 @@
+package com.cys.ladder.view;
+
+import com.cys.ladder.domain.*;
+
 import java.util.List;
 
 public class OutView {
 
-    public static void draw(Ladder ladder,PrizeCollection prizes, UserCollection users){
+    public static void draw(Ladder ladder, PrizeCollection prizes, UserCollection users){
          drawUser(users.getUsers());
          drawBridges(ladder.getBridges());
          drawPrize(prizes.getPrizes());
