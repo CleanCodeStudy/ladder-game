@@ -1,6 +1,12 @@
 package com.cys.ladder.view;
 
-import com.cys.ladder.domain.*;
+import com.cys.ladder.domain.endpoint.User;
+import com.cys.ladder.domain.ladder.Bridge;
+import com.cys.ladder.domain.ladder.Ladder;
+import com.cys.ladder.domain.ladder.Point;
+import com.cys.ladder.domain.endpoint.Prize;
+import com.cys.ladder.domain.endpoint.PrizeCollection;
+import com.cys.ladder.domain.endpoint.UserCollection;
 
 import java.util.List;
 
@@ -36,7 +42,7 @@ public class OutView {
     }
 
     private static String drawLine(Point point){
-        return point.isLinked() ?  "-----" : "     ";
+        return point.isRightLinked() ?  "-----" : "     ";
     }
 
     private static void drawPrize(List<Prize> prizes){

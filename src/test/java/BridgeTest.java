@@ -1,5 +1,5 @@
-import com.cys.ladder.domain.Bridge;
-import com.cys.ladder.domain.Point;
+import com.cys.ladder.domain.ladder.Bridge;
+import com.cys.ladder.domain.ladder.Point;
 import org.junit.Test;
 
 import java.util.Arrays;

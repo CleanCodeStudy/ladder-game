@@ -1,6 +1,6 @@
 package com.cys.ladder.view;
 
-import com.cys.ladder.domain.Endpoint;
+import com.cys.ladder.domain.endpoint.Endpoint;
 
 import java.util.Scanner;
 

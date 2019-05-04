@@ -1,4 +1,4 @@
-package com.cys.ladder.domain;
+package com.cys.ladder.domain.endpoint;
 
 public class Prize {
     private String prize;

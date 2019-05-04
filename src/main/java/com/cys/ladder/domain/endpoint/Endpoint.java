@@ -1,4 +1,4 @@
-package com.cys.ladder.domain;
+package com.cys.ladder.domain.endpoint;
 
 import java.util.Arrays;
 import java.util.List;
