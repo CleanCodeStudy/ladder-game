@@ -1,6 +1,6 @@
-package com.cys.ladder.domain;
+package com.cys.ladder.domain.ladder;
 
-import com.cys.ladder.LinkedStatus;
+import com.cys.ladder.domain.LinkedStatus;
 
 public class Point {
     private Integer column;
@@ -16,11 +16,15 @@ public class Point {
         this.linkedStatus = linkedStatus;
     }
 
-    public boolean isLinked() {
+    public int getColumn() {
+        return column;
+    }
+
+    public boolean isRightLinked() {
         return linkedStatus == LinkedStatus.RIGHT;
     }
 
-    public int getColumn() {
-        return column;
+    public boolean isLeftLinked() {
+        return linkedStatus == LinkedStatus.LEFT;
     }
 }

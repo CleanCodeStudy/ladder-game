@@ -1,4 +1,4 @@
-package com.cys.ladder.domain;
+package com.cys.ladder.domain.endpoint;
 
 public class User {
     private String name;
