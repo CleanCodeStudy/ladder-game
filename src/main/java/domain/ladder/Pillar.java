@@ -9,18 +9,6 @@ public class Pillar {
     private User user;
     private List<Point> points;
 
-    public static Pillar createFirst(String name, int height) {
-        return new Pillar(new User(name), DirectionGenerator.createFirst(height));
-    }
-
-    public static Pillar createMiddle(String name, Pillar before) {
-        return new Pillar(new User(name), DirectionGenerator.createMiddle(before.points));
-    }
-
-    public static Pillar createLast(String name, Pillar before) {
-        return new Pillar(new User(name), DirectionGenerator.createLast(before.points));
-    }
-
     public Pillar(User user, List<Point> points) {
         this.user = user;
         this.points = points;
@@ -44,5 +32,17 @@ public class Pillar {
 
     public boolean isEqualToX(int x) {
         return getX() == x;
+    }
+
+    public static Pillar createFirst(String name, int height) {
+        return new Pillar(new User(name), DirectionGenerator.createFirst(height));
+    }
+
+    public static Pillar createMiddle(String name, Pillar before) {
+        return new Pillar(new User(name), DirectionGenerator.createMiddle(before.points));
+    }
+
+    public static Pillar createLast(String name, Pillar before) {
+        return new Pillar(new User(name), DirectionGenerator.createLast(before.points));
     }
 }
