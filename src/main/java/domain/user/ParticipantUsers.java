@@ -1,18 +1,18 @@
 package domain.user;
 
-import data.InputData;
+import dto.GameStartOption;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static util.Util.separateUserName;
+import static util.RandomIntegerMaker.separateUserName;
 
-public class UserManage {
+public class ParticipantUsers {
     private List<User> users;
 
-    public UserManage(InputData inputData) {
-        this.users = createUser(inputData.getParticipants());
+    public ParticipantUsers(GameStartOption gameStartOption) {
+        this.users = createUser(gameStartOption.getParticipants());
     }
 
     public List<User> getUsers() {

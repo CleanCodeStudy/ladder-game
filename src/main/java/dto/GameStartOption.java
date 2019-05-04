@@ -1,6 +1,6 @@
-package data;
+package dto;
 
-public class InputData {
+public class GameStartOption {
 
     public static final String DELIMETER = ",";
 
@@ -8,7 +8,7 @@ public class InputData {
     private int ladderHeight;
     private String participants;
 
-    public InputData(String participants, int ladderHeight) {
+    public GameStartOption(String participants, int ladderHeight) {
         this.ladderWidth = ladderWidth(participants);
         this.ladderHeight = ladderHeight;
         this.participants = participants;

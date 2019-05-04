@@ -6,10 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static data.InputData.DELIMETER;
+import static dto.GameStartOption.DELIMETER;
 
-public class Util {
-    //    public
+public class RandomIntegerMaker {
+
+    private RandomIntegerMaker() {
+
+    }
+
     public static final int MIN_HEIGHT_INDEX = 0;
 
     public static List<Integer> createRandomIntegers(Integer heights) {

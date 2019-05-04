@@ -17,4 +17,12 @@ public class Bridge {
         return linkPillarDirection;
     }
 
+    public static Bridge createOneRightBridge(Integer location) {
+        return (new Bridge(location, LinkedType.RIGHT));
+    }
+
+    public static Bridge createOneLeftBridge(Integer location) {
+        return (new Bridge(location, LinkedType.LEFT));
+    }
+
 }

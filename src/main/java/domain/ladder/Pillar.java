@@ -1,21 +1,23 @@
 package domain.ladder;
 
-import data.InputData;
+
+import dto.GameStartOption;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static util.Util.createRandomIntegers;
-import static util.Util.createRandomIntegersWithRestriction;
+import static util.RandomIntegerMaker.createRandomIntegers;
+import static util.RandomIntegerMaker.createRandomIntegersWithRestriction;
+
 
 public class Pillar {
     public static final int MINIMUM_PILLAR_NUM = 0;
     private List<Bridge> bridges;
     private Integer pillarNum;
 
-    public Pillar(InputData inputData, Pillar previousPillar) { //자동으로 다리생성
+    public Pillar(GameStartOption gameStartOption, Pillar previousPillar) { //자동으로 다리생성
         pillarNum = nowPillarNum(previousPillar);
-        bridges = createBridges(inputData, previousPillar);
+        bridges = createBridges(gameStartOption, previousPillar);
     }
 
     public Integer getPillarNum() {
@@ -45,17 +47,17 @@ public class Pillar {
                 .collect(Collectors.toList());
     }
 
-    private List<Bridge> createBridges(InputData inputData, Pillar previousPillar) {
+    private List<Bridge> createBridges(GameStartOption gameStartOption, Pillar previousPillar) {
         if (isFirstPillar(previousPillar))
-            return createRightBridges(createRandomIntegers(inputData.getLadderHeight()));
-        if (isLastPillar(inputData, previousPillar))
+            return createRightBridges(createRandomIntegers(gameStartOption.getLadderHeight()));
+        if (isLastPillar(gameStartOption, previousPillar))
             return createLeftBridges(previousPillar);
-        return createLeftRightBridges(previousPillar, inputData.getLadderHeight());
+        return createLeftRightBridges(previousPillar, gameStartOption.getLadderHeight());
     }
 
 
-    private boolean isLastPillar(InputData inputData, Pillar previousPillar) {
-        if (inputData.getLadderWidth() - previousPillar.getPillarNum() == 2)
+    private boolean isLastPillar(GameStartOption gameStartOption, Pillar previousPillar) {
+        if (gameStartOption.getLadderWidth() - previousPillar.getPillarNum() == 2)
             return true;
         return false;
     }
@@ -76,7 +78,7 @@ public class Pillar {
 
     private List<Bridge> createRightBridges(List<Integer> locationsOfBridge) {
         return locationsOfBridge.stream()
-                .map(b -> createOneRightBridge(b))
+                .map(b -> Bridge.createOneRightBridge(b))
                 .collect(Collectors.toList());
     }
 
@@ -84,15 +86,7 @@ public class Pillar {
     private List<Bridge> createLeftBridges(Pillar previous) {
         List<Integer> locationsOfBridge = previous.getBridgesDirectionLocation(LinkedType.RIGHT);
         return locationsOfBridge.stream()
-                .map(b -> createOneLeftBridge(b))
+                .map(b -> Bridge.createOneLeftBridge(b))
                 .collect(Collectors.toList());
-    }
-
-    private Bridge createOneRightBridge(Integer location) {
-        return (new Bridge(location, LinkedType.RIGHT));
-    }
-
-    private Bridge createOneLeftBridge(Integer location) {
-        return (new Bridge(location, LinkedType.LEFT));
     }
 }

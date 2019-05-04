@@ -1,6 +1,7 @@
 package domain.ladder;
 
-import data.InputData;
+
+import dto.GameStartOption;
 import org.junit.Test;
 
 import java.util.List;
@@ -11,35 +12,35 @@ public class PillarTest {
 
     @Test
     public void 첫번째기둥_넘버만들기() {
-        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
-        Pillar p = new Pillar(inputData, null);
+        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        Pillar p = new Pillar(gameStartOption, null);
         assertEquals((Integer) 0, p.getPillarNum());
     }
 
     @Test
     public void 가운데기둥_넘버만들기() {
-        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
-        Pillar p = new Pillar(inputData, null);
-        Pillar p1 = new Pillar(inputData, p);
+        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        Pillar p = new Pillar(gameStartOption, null);
+        Pillar p1 = new Pillar(gameStartOption, p);
 
         assertEquals((Integer) 1, p1.getPillarNum());
     }
 
     @Test
     public void 마지막기둥_넘버만들기() {
-        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
-        Pillar p = new Pillar(inputData, null);
-        Pillar p1 = new Pillar(inputData, p);
-        Pillar p2 = new Pillar(inputData, p1);
-        Pillar p3 = new Pillar(inputData, p2);
+        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        Pillar p = new Pillar(gameStartOption, null);
+        Pillar p1 = new Pillar(gameStartOption, p);
+        Pillar p2 = new Pillar(gameStartOption, p1);
+        Pillar p3 = new Pillar(gameStartOption, p2);
 
         assertEquals((Integer) 3, p3.getPillarNum());
     }
 
     @Test
     public void 첫번째_기둥_bridge_리스트_만들기() {
-        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
-        Pillar p = new Pillar(inputData, null);
+        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        Pillar p = new Pillar(gameStartOption, null);
 
         System.out.println(p.getBridgesLocations());
 
@@ -49,9 +50,9 @@ public class PillarTest {
 
     @Test
     public void 두번째_기둥_bridge_리스트_만들기() {
-        InputData inputData = new InputData("pobi,honux,crong,jk", 10);
-        Pillar p = new Pillar(inputData, null);
-        Pillar p1 = new Pillar(inputData, p);
+        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 10);
+        Pillar p = new Pillar(gameStartOption, null);
+        Pillar p1 = new Pillar(gameStartOption, p);
 
         List<Integer> p1LeftBridgesLocation = p1.getBridgesDirectionLocation(LinkedType.LEFT);
         List<Integer> p1RightBridgesLocation = p1.getBridgesDirectionLocation(LinkedType.RIGHT);
@@ -68,11 +69,11 @@ public class PillarTest {
 
     @Test
     public void 마지막_기둥_bridge_리스트_만들기() {
-        InputData inputData = new InputData("pobi,honux,crong,jk", 10);
-        Pillar p = new Pillar(inputData, null);
-        Pillar p1 = new Pillar(inputData, p);
-        Pillar p2 = new Pillar(inputData, p1);
-        Pillar p3 = new Pillar(inputData, p2);
+        GameStartOption GameStartOption = new GameStartOption("pobi,honux,crong,jk", 10);
+        Pillar p = new Pillar(GameStartOption, null);
+        Pillar p1 = new Pillar(GameStartOption, p);
+        Pillar p2 = new Pillar(GameStartOption, p1);
+        Pillar p3 = new Pillar(GameStartOption, p2);
 
 //        System.out.println("P RIGHT" + p.getBridgesDirectionLocation(LinkedType.RIGHT));
 //        System.out.println("p1 LEFT" + p1.getBridgesDirectionLocation(LinkedType.LEFT));
@@ -87,23 +88,23 @@ public class PillarTest {
 
     @Test
     public void 이전기둥확인해서_넘버만들기() {
-        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
-        Pillar p = new Pillar(inputData, null);
-        Pillar p1 = new Pillar(inputData, p);
+        GameStartOption GameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        Pillar p = new Pillar(GameStartOption, null);
+        Pillar p1 = new Pillar(GameStartOption, p);
         assertEquals((Integer) 1, p1.getPillarNum());
     }
 
     @Test
     public void 자동으로_오른쪽_기둥과_연결된_다리리스트_만들기() {
-        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
-        Pillar p = new Pillar(inputData, null);
+        GameStartOption GameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        Pillar p = new Pillar(GameStartOption, null);
         assertEquals(true, p.getBridges().size() <= 3);
     }
 
     @Test
     public void 기둥에_연결된_다리의_location_값_리스트_가져오기() {
-        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
-        Pillar p = new Pillar(inputData, null);
+        GameStartOption GameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        Pillar p = new Pillar(GameStartOption, null);
         List<Integer> bridgesLocations = p.getBridgesLocations();
         System.out.println(bridgesLocations);
         assertEquals(true, bridgesLocations.size() <= 3 && bridgesLocations.size() >= 0);
@@ -111,8 +112,8 @@ public class PillarTest {
 
     @Test
     public void 기둥에_연결된_특정_방향의_다리의_location_값_리스트_가져오기() {
-        InputData inputData = new InputData("pobi,honux,crong,jk", 3);
-        Pillar p = new Pillar(inputData, null);
+        GameStartOption GameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        Pillar p = new Pillar(GameStartOption, null);
         List<Integer> bridgesLocations = p.getBridgesDirectionLocation(LinkedType.LEFT);
         assertEquals(0, bridgesLocations.size());
     }
