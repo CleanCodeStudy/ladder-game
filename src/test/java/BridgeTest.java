@@ -1,10 +1,8 @@
+import com.cys.ladder.domain.Bridge;
+import com.cys.ladder.domain.Point;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class BridgeTest {
 

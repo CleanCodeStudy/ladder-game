@@ -1,3 +1,5 @@
+package com.cys.ladder.domain;
+
 public class User {
     private String name;
     private Integer location;
@@ -13,4 +15,14 @@ public class User {
             throw new IllegalArgumentException();
         }
     }
+
+    public boolean isEqualToLocation(Integer location){
+        return this.location == location;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
 }
