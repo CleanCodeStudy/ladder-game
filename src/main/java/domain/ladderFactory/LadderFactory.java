@@ -1,6 +1,6 @@
-package domain.LadderFactory;
+package domain.ladderFactory;
 
-import domain.Pillar;
+import domain.ladder.Pillar;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package domain.direction;
 
-import domain.Location;
-import domain.Point;
+import domain.ladder.Location;
+import domain.ladder.Point;
 
 import java.util.ArrayList;
 import java.util.Collections;

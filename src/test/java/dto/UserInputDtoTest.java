@@ -1,6 +1,6 @@
 package dto;
 
-import domain.User;
+import domain.ladder.User;
 import org.junit.Before;
 import org.junit.Test;
 

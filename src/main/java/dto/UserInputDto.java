@@ -1,6 +1,6 @@
 package dto;
 
-import domain.User;
+import domain.ladder.User;
 
 import java.util.Arrays;
 import java.util.List;

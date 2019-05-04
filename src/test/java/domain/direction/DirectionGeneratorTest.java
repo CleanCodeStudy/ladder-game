@@ -1,6 +1,6 @@
 package domain.direction;
 
-import domain.Point;
+import domain.ladder.Point;
 import org.junit.Before;
 import org.junit.Test;
 

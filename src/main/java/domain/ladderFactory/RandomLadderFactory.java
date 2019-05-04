@@ -1,7 +1,7 @@
-package domain.LadderFactory;
+package domain.ladderFactory;
 
-import domain.Ladder;
-import domain.Pillar;
+import domain.ladder.Ladder;
+import domain.ladder.Pillar;
 import dto.UserInputDto;
 
 import java.util.ArrayList;

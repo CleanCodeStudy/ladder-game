@@ -1,7 +1,7 @@
-package domain.LadderFactory;
+package domain.ladderFactory;
 
-import domain.Pillar;
-import domain.Point;
+import domain.ladder.Pillar;
+import domain.ladder.Point;
 import domain.direction.Direction;
 import dto.UserInputDto;
 import org.junit.Before;

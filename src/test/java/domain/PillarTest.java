@@ -1,6 +1,10 @@
 package domain;
 
 import domain.direction.Direction;
+import domain.ladder.Location;
+import domain.ladder.Pillar;
+import domain.ladder.Point;
+import domain.ladder.User;
 import org.junit.Before;
 import org.junit.Test;
 

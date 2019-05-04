@@ -1,6 +1,6 @@
 package view;
 
-import domain.Ladder;
+import domain.ladder.Ladder;
 import domain.direction.Direction;
 
 import java.util.List;

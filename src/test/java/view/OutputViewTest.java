@@ -1,7 +1,7 @@
 package view;
 
-import domain.Ladder;
-import domain.LadderFactory.RandomLadderFactory;
+import domain.ladder.Ladder;
+import domain.ladderFactory.RandomLadderFactory;
 import dto.UserInputDto;
 import org.junit.Before;
 import org.junit.Test;

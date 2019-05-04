@@ -1,6 +1,6 @@
-package domain.LadderFactory;
+package domain.ladderFactory;
 
-import domain.Pillar;
+import domain.ladder.Pillar;
 import dto.UserInputDto;
 import org.junit.Before;
 import org.junit.Test;

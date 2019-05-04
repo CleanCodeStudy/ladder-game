@@ -1,6 +1,5 @@
-package domain;
+package domain.ladder;
 
-import domain.LadderFactory.LadderFactory;
 import domain.direction.Direction;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public class Ladder {
     }
 
     public Direction getDirection(int x, int y) {
-        List<Point> points = findPoint(x, y);
+        List<Point> points = findPointByX(x);
 
         return points.stream()
                 .filter(point -> point.isLocationXY(x, y))
@@ -24,7 +23,7 @@ public class Ladder {
                 .getDirection();
     }
 
-    private List<Point> findPoint(int x, int y) {
+    private List<Point> findPointByX(int x) {
         return pillars.stream()
                 .filter(pillar -> pillar.isEqualToX(x))
                 .findFirst()
