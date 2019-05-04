@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -93,7 +94,7 @@ public class PillarTest {
                 .mapToObj(idx -> points.get(idx).getDirection())
                 .collect(Collectors.toList());
 
-        assertThat(directions).contains(Direction.DOWN, Direction.RIGHT);
+        assertThat(directions).containsAnyElementsOf(Arrays.asList(Direction.DOWN, Direction.RIGHT));
 
         directions = IntStream.rangeClosed(7, 9)
                 .mapToObj(idx -> points.get(idx).getDirection())
