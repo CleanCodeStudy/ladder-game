@@ -8,31 +8,23 @@ import java.util.stream.Collectors;
 public class Ladder {
 
     private List<Pillar> pillars;
+    private int height;
 
-    public Ladder(List<Pillar> pillars) {
+    public Ladder(List<Pillar> pillars, int height) {
         this.pillars = pillars;
+        this.height = height;
     }
 
     public Direction getDirection(int x, int y) {
-        List<Point> points = findPointByX(x);
-
-        return points.stream()
-                .filter(point -> point.isLocationXY(x, y))
-                .findFirst()
-                .orElseThrow(RuntimeException::new)
-                .getDirection();
-    }
-
-    private List<Point> findPointByX(int x) {
         return pillars.stream()
-                .filter(pillar -> pillar.isEqualToX(x))
+                .filter(pillar -> pillar.hasXY(x, y))
+                .map(pillar -> pillar.getPointDirection(x, y))
                 .findFirst()
-                .orElseThrow(RuntimeException::new)
-                .getPoints();
+                .orElseThrow(RuntimeException::new);
     }
 
     public int getHeight() {
-        return pillars.get(0).getHeight();
+        return this.height;
     }
 
     public List<String> getNames() {

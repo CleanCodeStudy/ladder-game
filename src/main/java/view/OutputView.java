@@ -1,7 +1,7 @@
 package view;
 
-import domain.ladder.Ladder;
 import domain.direction.Direction;
+import domain.ladder.Ladder;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -68,7 +68,7 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         int width = getMax(ladder.getNames());
         sb.append(findStick(direction));
-        if (direction != Direction.RIGHT) {
+        if (!direction.isRight()) {
             sb.append(addWidth(width, BLANK));
             return sb.toString();
         }
@@ -77,7 +77,7 @@ public class OutputView {
     }
 
     private String findStick(Direction direction) {
-        if (direction == Direction.RIGHT) {
+        if (direction.isRight()) {
             return RIGHT;
         }
         if (direction == Direction.LEFT) {

@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.direction.DirectionGenerator;
+import domain.direction.Direction;
 
 import java.util.List;
 
@@ -18,31 +18,33 @@ public class Pillar {
         return user.getName();
     }
 
-    public List<Point> getPoints() {
-        return points;
+    public Direction getPointDirection(int x, int y) {
+        return getPointByXY(x, y)
+                .getDirection();
     }
 
-    public int getHeight() {
-        return points.size();
+    private Point getPointByXY(int x, int y) {
+        return points.stream()
+                .filter(point -> point.isPresentXY(x, y))
+                .findFirst()
+                .orElseThrow(RuntimeException::new);
     }
 
-    public int getX() {
-        return points.get(0).getX();
-    }
-
-    public boolean isEqualToX(int x) {
-        return getX() == x;
+    public boolean hasXY(int x, int y) {
+        return points.stream()
+                .filter(point -> point.isPresentXY(x, y))
+                .count() > 0;
     }
 
     public static Pillar createFirst(String name, int height) {
-        return new Pillar(new User(name), DirectionGenerator.createFirst(height));
+        return new Pillar(new User(name), PointGenerator.createFirst(height));
     }
 
     public static Pillar createMiddle(String name, Pillar before) {
-        return new Pillar(new User(name), DirectionGenerator.createMiddle(before.points));
+        return new Pillar(new User(name), PointGenerator.createMiddle(before.points));
     }
 
     public static Pillar createLast(String name, Pillar before) {
-        return new Pillar(new User(name), DirectionGenerator.createLast(before.points));
+        return new Pillar(new User(name), PointGenerator.createLast(before.points));
     }
 }

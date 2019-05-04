@@ -1,4 +1,4 @@
-package domain.ladderFactory;
+package domain.ladder.ladderFactory;
 
 import domain.direction.Direction;
 import domain.ladder.*;
@@ -72,6 +72,6 @@ public class FixedLadderFactory implements LadderFactory {
     }
 
     public Ladder createLadder() {
-        return new Ladder(createPillars());
+        return new Ladder(createPillars(), height);
     }
 }

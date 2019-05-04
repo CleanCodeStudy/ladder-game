@@ -1,4 +1,4 @@
-package domain.ladderFactory;
+package domain.ladder.ladderFactory;
 
 import domain.ladder.Pillar;
 import dto.UserInputDto;
@@ -30,11 +30,6 @@ public class RandomLadderFactoryTest {
         List<Pillar> pillars = factory.createPillars();
 
         assertThat(pillars.size()).isEqualTo(people);
-
-        for (Pillar pillar : pillars) {
-            int count = pillar.getPoints().size();
-            assertThat(count).isEqualTo(height);
-        }
     }
 
 }

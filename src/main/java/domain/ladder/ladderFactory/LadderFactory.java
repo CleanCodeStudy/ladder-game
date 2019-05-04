@@ -1,4 +1,4 @@
-package domain.ladderFactory;
+package domain.ladder.ladderFactory;
 
 import domain.ladder.Pillar;
 

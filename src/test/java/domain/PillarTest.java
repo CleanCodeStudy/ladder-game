@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -63,15 +62,10 @@ public class PillarTest {
     public void 첫번째_기둥_만들기() {
         Pillar first = Pillar.createFirst(name, height);
 
-        assertThat(first.getHeight()).isEqualTo(height);
         assertThat(first.getUserName()).isEqualTo(name);
 
-        first.getPoints().stream()
-                .map(Point::getX)
-                .forEach(x -> assertThat(x).isEqualTo(0));
-
         IntStream.rangeClosed(0, 9)
-                .forEach(y -> assertThat(first.getPoints().get(y).getY()).isEqualTo(y));
+                .forEach(y -> assertThat(first.hasXY(0, y)).isTrue());
 
     }
 
@@ -80,27 +74,25 @@ public class PillarTest {
         String userName = "kim";
         Pillar pillar = Pillar.createMiddle(userName, leftPillar);
 
-        assertThat(pillar.getHeight()).isEqualTo(height);
         assertThat(pillar.getUserName()).isEqualTo(userName);
 
-        List<Point> points = pillar.getPoints();
         List<Direction> directions = IntStream.rangeClosed(0, 3)
-                .mapToObj(idx -> points.get(idx).getDirection())
+                .mapToObj(idx -> pillar.getPointDirection(1,idx))
                 .collect(Collectors.toList());
 
         assertThat(directions).containsOnly(Direction.LEFT);
 
         directions = IntStream.rangeClosed(4, 6)
-                .mapToObj(idx -> points.get(idx).getDirection())
+                .mapToObj(idx -> pillar.getPointDirection(1,idx))
                 .collect(Collectors.toList());
 
-        assertThat(directions).containsAnyElementsOf(Arrays.asList(Direction.DOWN, Direction.RIGHT));
+        assertThat(directions).containsAnyOf(Direction.DOWN, Direction.RIGHT);
 
         directions = IntStream.rangeClosed(7, 9)
-                .mapToObj(idx -> points.get(idx).getDirection())
+                .mapToObj(idx -> pillar.getPointDirection(1,idx))
                 .collect(Collectors.toList());
 
-        assertThat(directions).contains(Direction.DOWN, Direction.RIGHT);
+        assertThat(directions).containsAnyOf(Direction.DOWN, Direction.RIGHT);
     }
 
     @Test
@@ -108,24 +100,22 @@ public class PillarTest {
         String userName = "kim";
         Pillar pillar = Pillar.createLast(userName, leftPillar);
 
-        assertThat(pillar.getHeight()).isEqualTo(height);
         assertThat(pillar.getUserName()).isEqualTo(userName);
 
-        List<Point> points = pillar.getPoints();
         List<Direction> directions = IntStream.rangeClosed(0, 3)
-                .mapToObj(idx -> points.get(idx).getDirection())
+                .mapToObj(idx -> pillar.getPointDirection(1,idx))
                 .collect(Collectors.toList());
 
         assertThat(directions).containsOnly(Direction.LEFT);
 
         directions = IntStream.rangeClosed(4, 6)
-                .mapToObj(idx -> points.get(idx).getDirection())
+                .mapToObj(idx -> pillar.getPointDirection(1,idx))
                 .collect(Collectors.toList());
 
         assertThat(directions).containsOnly(Direction.DOWN);
 
         directions = IntStream.rangeClosed(7, 9)
-                .mapToObj(idx -> points.get(idx).getDirection())
+                .mapToObj(idx -> pillar.getPointDirection(1,idx))
                 .collect(Collectors.toList());
 
         assertThat(directions).containsOnly(Direction.DOWN);

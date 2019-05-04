@@ -1,4 +1,4 @@
-package domain.ladderFactory;
+package domain.ladder.ladderFactory;
 
 import domain.ladder.Ladder;
 import domain.ladder.Pillar;
@@ -20,10 +20,14 @@ public class RandomLadderFactory implements LadderFactory {
     @Override
     public List<Pillar> createPillars() {
         List<Pillar> pillars = new ArrayList<>();
-        pillars.add(Pillar.createFirst(names.get(0), height));
+        addFirst(pillars);
         addMid(pillars);
-        pillars.add(Pillar.createLast(names.get(getLastIndex()), pillars.get(getLastIndex() - 1)));
+        addLast(pillars);
         return pillars;
+    }
+
+    private void addFirst(List<Pillar> pillars) {
+        pillars.add(Pillar.createFirst(names.get(0), height));
     }
 
     private void addMid(List<Pillar> pillars) {
@@ -33,11 +37,15 @@ public class RandomLadderFactory implements LadderFactory {
         }
     }
 
+    private void addLast(List<Pillar> pillars) {
+        pillars.add(Pillar.createLast(names.get(getLastIndex()), pillars.get(getLastIndex() - 1)));
+    }
+
     private int getLastIndex() {
         return names.size() - 1;
     }
 
     public Ladder createLadder() {
-        return new Ladder(createPillars());
+        return new Ladder(createPillars(), height);
     }
 }

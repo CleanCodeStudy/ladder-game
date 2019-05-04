@@ -1,6 +1,7 @@
 package domain.direction;
 
 import domain.ladder.Point;
+import domain.ladder.PointGenerator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DirectionGeneratorTest {
+public class PointGeneratorTest {
 
     Direction down;
     Direction right;
@@ -29,7 +30,7 @@ public class DirectionGeneratorTest {
     @Test
     public void 첫번째_방향들_만들기() {
 
-        DirectionGenerator generator = new DirectionGenerator();
+        PointGenerator generator = new PointGenerator();
         List<Point> points = generator.createFirst(height);
 
         assertThat(points.size()).isEqualTo(height);
@@ -46,7 +47,7 @@ public class DirectionGeneratorTest {
     @Test
     public void 중간기둥들의_방향_만들기() {
 
-        DirectionGenerator generator = new DirectionGenerator();
+        PointGenerator generator = new PointGenerator();
         List<Point> before = generator.createFirst(height);
 
         List<Point> points = generator.createMiddle(before);
@@ -65,7 +66,7 @@ public class DirectionGeneratorTest {
     @Test
     public void 마지막기둥의_방향_만들기() {
 
-        DirectionGenerator generator = new DirectionGenerator();
+        PointGenerator generator = new PointGenerator();
         List<Point> before = generator.createFirst(height);
 
         List<Point> points = generator.createLast(before);

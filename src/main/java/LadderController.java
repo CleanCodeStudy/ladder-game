@@ -1,5 +1,5 @@
 import domain.ladder.Ladder;
-import domain.ladderFactory.RandomLadderFactory;
+import domain.ladder.ladderFactory.RandomLadderFactory;
 import dto.UserInputDto;
 import view.InputView;
 import view.OutputView;

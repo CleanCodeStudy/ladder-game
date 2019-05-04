@@ -28,26 +28,11 @@ public class PointTest {
     }
 
     @Test
-    public void Y좌표값_가져오기() {
-        int y = before.getY();
-        assertThat(y).isEqualTo(beforeY);
-    }
-
-    @Test
-    public void X좌표값_가져오기() {
-        int x = before.getX();
-        assertThat(x).isEqualTo(beforeX);
-    }
-
-    @Test
     public void 왼쪽점을_이용해서_새로운점_만들기() {
         Point now = Point.createNextPoint(before, left);
 
-        int nowX = now.getX();
-        int nowY = now.getY();
 
-        assertThat(nowX).isEqualTo(beforeX + 1);
-        assertThat(nowY).isEqualTo(beforeY);
+        assertThat(now.isPresentXY(beforeX+1,beforeY));
     }
 
     @Test
@@ -73,11 +58,11 @@ public class PointTest {
 
         Point point = new Point(location, right);
 
-        assertThat(point.isLocationXY(x, y)).isTrue();
+        assertThat(point.isPresentXY(x, y)).isTrue();
 
-        assertThat(point.isLocationXY(x, 1000)).isFalse();
-        assertThat(point.isLocationXY(1000, y)).isFalse();
-        assertThat(point.isLocationXY(1000, 1000)).isFalse();
+        assertThat(point.isPresentXY(x, 1000)).isFalse();
+        assertThat(point.isPresentXY(1000, y)).isFalse();
+        assertThat(point.isPresentXY(1000, 1000)).isFalse();
     }
 
 }

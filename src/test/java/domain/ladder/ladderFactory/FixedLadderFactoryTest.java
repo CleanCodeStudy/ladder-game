@@ -1,8 +1,7 @@
-package domain.ladderFactory;
+package domain.ladder.ladderFactory;
 
-import domain.ladder.Pillar;
-import domain.ladder.Point;
 import domain.direction.Direction;
+import domain.ladder.Pillar;
 import dto.UserInputDto;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,27 +32,16 @@ public class FixedLadderFactoryTest {
 
         assertThat(pillars.size()).isEqualTo(people);
 
-        for (Pillar pillar : pillars) {
-            int count = pillar.getPoints().size();
-            assertThat(count).isEqualTo(height);
-        }
-
-        Pillar first = pillars.stream()
-                .filter(pillar -> pillar.isEqualToX(0))
-                .findFirst()
-                .orElseThrow(RuntimeException::new);
-
-        List<Point> points = first.getPoints();
-
+        Pillar first = pillars.get(0);
 
         for (int i = 0; i < height / 3; i++) {
-            assertThat(points.get(i).getDirection()).isEqualTo(Direction.RIGHT);
+            assertThat(first.getPointDirection(0,i)).isEqualTo(Direction.RIGHT);
         }
         for (int i = height / 3; i < height / 3 * 2; i++) {
-            assertThat(points.get(i).getDirection()).isEqualTo(Direction.DOWN);
+            assertThat(first.getPointDirection(0,i)).isEqualTo(Direction.DOWN);
         }
         for (int i = height / 3 * 2; i < height; i++) {
-            assertThat(points.get(i).getDirection()).isEqualTo(Direction.LEFT);
+            assertThat(first.getPointDirection(0,i)).isEqualTo(Direction.LEFT);
         }
     }
 }

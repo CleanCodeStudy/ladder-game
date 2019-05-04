@@ -1,7 +1,7 @@
 package view;
 
 import domain.ladder.Ladder;
-import domain.ladderFactory.RandomLadderFactory;
+import domain.ladder.ladderFactory.RandomLadderFactory;
 import dto.UserInputDto;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class OutputViewTest {
         inputDto = new UserInputDto(names, height);
         people = inputDto.getNames().size();
         factory = new RandomLadderFactory(inputDto);
-        ladder = new Ladder(factory.createPillars());
+        ladder = new Ladder(factory.createPillars(),height);
         outputView = new OutputView(ladder);
     }
 

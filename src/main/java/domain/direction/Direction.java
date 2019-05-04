@@ -1,34 +1,31 @@
 package domain.direction;
 
-import java.util.Arrays;
+import domain.ladder.Point;
+
+import java.util.Random;
 
 public enum Direction {
-    RIGHT(1),
-    DOWN(2),
-    LEFT(3);
 
-    private int code;
-
-    Direction(int code) {
-        this.code = code;
-    }
-
-    public int getCode() {
-        return code;
-    }
+    RIGHT,
+    DOWN,
+    LEFT;
 
     public boolean isRight() {
         return this == Direction.RIGHT;
     }
 
-    public static Direction findByCode(int code) {
-        return Arrays.stream(Direction.values())
-                .filter(direction -> direction.hasCode(code))
-                .findFirst()
-                .orElse(DOWN);
+    public static Direction getRightOrDown() {
+        return new Random().nextBoolean() ? RIGHT : DOWN;
     }
 
-    private boolean hasCode(int code) {
-        return this.code == code;
+    public static Direction createMidDirection(Point point) {
+        if (point.isRight()) {
+            return Direction.LEFT;
+        }
+        return Direction.getRightOrDown();
+    }
+
+    public static Direction createLastDirection(Point point) {
+        return point.isRight() ? LEFT : DOWN;
     }
 }

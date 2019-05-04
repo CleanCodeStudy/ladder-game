@@ -23,10 +23,4 @@ public class DirectionTest {
         assertThat(Direction.RIGHT.isRight()).isTrue();
     }
 
-    @Test
-    public void 방향_찾기_테스트() {
-        assertThat(Direction.findByCode(down.getCode())).isEqualTo(Direction.DOWN);
-        assertThat(Direction.findByCode(left.getCode())).isEqualTo(Direction.LEFT);
-        assertThat(Direction.findByCode(right.getCode())).isEqualTo(Direction.RIGHT);
-    }
 }
