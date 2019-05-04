@@ -1,12 +1,16 @@
-import org.junit.Test;
+package domain;
 
-import static org.junit.Assert.*;
+import domain.Point;
+import org.junit.Test;
+import util.LinkedType;
+
+import static org.junit.Assert.assertEquals;
 
 public class PointTest {
 
     @Test
     public void 오른쪽_연결된_포인트_생성하기() {
-        assertEquals(Point.createRightLinkedPoint(1).getLinkedType(),LinkedType.RIGHT);
+        assertEquals(Point.createRightLinkedPoint(1).getLinkedType(), LinkedType.RIGHT);
     }
 
     @Test
