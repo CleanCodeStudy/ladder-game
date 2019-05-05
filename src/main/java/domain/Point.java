@@ -27,15 +27,12 @@ public class Point {
 
     public static Point createPoint(Integer column,Point previous){
 
-        if(previous != null && previous.getLinkedType() == LinkedType.RIGHT){
+        if(previous != null && previous.isRightLinked()){
             return createLeftLinkedPoint(column);
         }
 
-        if(new Random().nextBoolean()){
-            return createRightLinkedPoint(column);
-        }
+        return new Random().nextBoolean() ? createRightLinkedPoint(column) : createNotLinkedPoint(column);
 
-        return createNotLinkedPoint(column);
     }
 
     public static Point createRightLinkedPoint(Integer column){
@@ -48,5 +45,13 @@ public class Point {
 
     public static Point createNotLinkedPoint(Integer column){
         return new Point(column, LinkedType.NONE);
+    }
+
+    public boolean isRightLinked(){
+        return this.linkedType == LinkedType.RIGHT;
+    }
+
+    public boolean isLeftLinked(){
+        return this.linkedType == LinkedType.LEFT;
     }
 }
