@@ -1,9 +1,5 @@
 package domain;
 
-import domain.Point;
-import util.LinkedType;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -23,33 +19,6 @@ public class Bridge {
         return points;
     }
 
-    public static Bridge createBridge(int height, int playerNumber){
-        List<Point> points = new ArrayList<>();
-
-        Point firstPoint = Point.createPoint(1,null);
-        points.add(firstPoint);
-
-        for (int i = 1; i < playerNumber-1; i++){
-            Point previous = points.get(i-1);
-            Point current = Point.createPoint(i+1,previous);
-            points.add(current);
-        }
-
-        Point lastPoint = Point.createNotLinkedPoint(playerNumber);
-
-        if(points.get(playerNumber-2).getLinkedType() == LinkedType.RIGHT){
-            lastPoint = Point.createLeftLinkedPoint(playerNumber);
-        }
-        points.add(lastPoint);
-
-        return new Bridge(height,points);
-    }
-
-//    public static Bridge createFixedBridge(int height, int playerNumber) {
-//        List<Point> points = new ArrayList<>();
-//
-//    }
-
     public Point nextPoint(int currentColumn){
         currentColumn --;
         Point point = points.get(currentColumn);
@@ -64,4 +33,5 @@ public class Bridge {
 
         return point;
     }
+
 }

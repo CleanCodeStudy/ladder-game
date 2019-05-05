@@ -1,3 +1,4 @@
+import domain.generator.LadderGenerator;
 import domain.User;
 import dto.GameResultDto;
 import domain.Ladder;
@@ -14,7 +15,7 @@ public class LadderGame {
 
     public LadderGame(GameInformationDto gameInformationDto) {
         this.gameInformationDto = gameInformationDto;
-        ladder = Ladder.createLadder(gameInformationDto);
+        ladder = LadderGenerator.generate(gameInformationDto.getLadderHeight(),gameInformationDto.getPlayers().size());
     }
 
     public GameResultDto getGameResult(){

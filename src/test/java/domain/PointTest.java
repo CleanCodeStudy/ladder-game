@@ -1,8 +1,7 @@
 package domain;
 
-import domain.Point;
+import domain.generator.PointGenerator;
 import org.junit.Test;
-import util.LinkedType;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,16 +9,24 @@ public class PointTest {
 
     @Test
     public void 오른쪽_연결된_포인트_생성하기() {
-        assertEquals(Point.createRightLinkedPoint(1).getLinkedType(), LinkedType.RIGHT);
+        assertEquals(PointGenerator.createRightLinkedPoint(1).getLinkedType(), LinkedType.RIGHT);
     }
 
     @Test
     public void 왼쪽_연결된_포인트_생성하기() {
-        assertEquals(Point.createLeftLinkedPoint(2).getLinkedType(),LinkedType.LEFT);
+        assertEquals(PointGenerator.createLeftLinkedPoint(2).getLinkedType(),LinkedType.LEFT);
     }
 
     @Test
     public void 연결안된_포인트_생성하기() {
-        assertEquals(Point.createNotLinkedPoint(1).getLinkedType(),LinkedType.NONE);
+        assertEquals(PointGenerator.createNotLinkedPoint(1).getLinkedType(),LinkedType.NONE);
+    }
+
+    @Test
+    public void 컴럼_1_포인트_생성하기() {
+        //given
+        //when
+        //then
+        assertEquals(PointGenerator.createNotLinkedPoint(1).getColumn(),1);
     }
 }

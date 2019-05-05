@@ -1,10 +1,9 @@
 package view;
 
 import domain.Bridge;
-import domain.Point;
 import domain.User;
 import dto.GameResultDto;
-import util.LinkedType;
+import domain.LinkedType;
 
 import java.util.HashMap;
 import java.util.List;
