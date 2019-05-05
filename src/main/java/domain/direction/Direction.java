@@ -11,7 +11,11 @@ public enum Direction {
     LEFT;
 
     public boolean isRight() {
-        return this == Direction.RIGHT;
+        return this == RIGHT;
+    }
+
+    public boolean isLeft() {
+        return this == LEFT;
     }
 
     public static Direction getRightOrDown() {
@@ -20,7 +24,10 @@ public enum Direction {
 
     public static Direction createMidDirection(Point point) {
         if (point.isRight()) {
-            return Direction.LEFT;
+            return LEFT;
+        }
+        if (point.isLeft()) {
+            return DOWN;
         }
         return Direction.getRightOrDown();
     }

@@ -77,19 +77,19 @@ public class PillarTest {
         assertThat(pillar.getUserName()).isEqualTo(userName);
 
         List<Direction> directions = IntStream.rangeClosed(0, 3)
-                .mapToObj(idx -> pillar.getPointDirection(1,idx))
+                .mapToObj(idx -> pillar.getPointDirection(1, idx))
                 .collect(Collectors.toList());
 
         assertThat(directions).containsOnly(Direction.LEFT);
 
         directions = IntStream.rangeClosed(4, 6)
-                .mapToObj(idx -> pillar.getPointDirection(1,idx))
+                .mapToObj(idx -> pillar.getPointDirection(1, idx))
                 .collect(Collectors.toList());
 
         assertThat(directions).containsAnyOf(Direction.DOWN, Direction.RIGHT);
 
         directions = IntStream.rangeClosed(7, 9)
-                .mapToObj(idx -> pillar.getPointDirection(1,idx))
+                .mapToObj(idx -> pillar.getPointDirection(1, idx))
                 .collect(Collectors.toList());
 
         assertThat(directions).containsAnyOf(Direction.DOWN, Direction.RIGHT);
@@ -103,19 +103,19 @@ public class PillarTest {
         assertThat(pillar.getUserName()).isEqualTo(userName);
 
         List<Direction> directions = IntStream.rangeClosed(0, 3)
-                .mapToObj(idx -> pillar.getPointDirection(1,idx))
+                .mapToObj(idx -> pillar.getPointDirection(1, idx))
                 .collect(Collectors.toList());
 
         assertThat(directions).containsOnly(Direction.LEFT);
 
         directions = IntStream.rangeClosed(4, 6)
-                .mapToObj(idx -> pillar.getPointDirection(1,idx))
+                .mapToObj(idx -> pillar.getPointDirection(1, idx))
                 .collect(Collectors.toList());
 
         assertThat(directions).containsOnly(Direction.DOWN);
 
         directions = IntStream.rangeClosed(7, 9)
-                .mapToObj(idx -> pillar.getPointDirection(1,idx))
+                .mapToObj(idx -> pillar.getPointDirection(1, idx))
                 .collect(Collectors.toList());
 
         assertThat(directions).containsOnly(Direction.DOWN);

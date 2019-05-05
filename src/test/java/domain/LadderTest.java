@@ -1,9 +1,9 @@
 package domain;
 
+import domain.direction.Direction;
 import domain.ladder.Ladder;
 import domain.ladder.ladderFactory.FixedLadderFactory;
 import domain.ladder.ladderFactory.LadderFactory;
-import domain.direction.Direction;
 import dto.UserInputDto;
 import org.junit.Before;
 import org.junit.Test;

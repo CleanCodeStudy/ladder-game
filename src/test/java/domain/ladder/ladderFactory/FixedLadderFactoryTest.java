@@ -35,13 +35,13 @@ public class FixedLadderFactoryTest {
         Pillar first = pillars.get(0);
 
         for (int i = 0; i < height / 3; i++) {
-            assertThat(first.getPointDirection(0,i)).isEqualTo(Direction.RIGHT);
+            assertThat(first.getPointDirection(0, i)).isEqualTo(Direction.RIGHT);
         }
         for (int i = height / 3; i < height / 3 * 2; i++) {
-            assertThat(first.getPointDirection(0,i)).isEqualTo(Direction.DOWN);
+            assertThat(first.getPointDirection(0, i)).isEqualTo(Direction.DOWN);
         }
         for (int i = height / 3 * 2; i < height; i++) {
-            assertThat(first.getPointDirection(0,i)).isEqualTo(Direction.LEFT);
+            assertThat(first.getPointDirection(0, i)).isEqualTo(Direction.LEFT);
         }
     }
 }

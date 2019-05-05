@@ -16,7 +16,11 @@ public class Point {
     }
 
     public boolean isRight() {
-        return this.direction == Direction.RIGHT;
+        return this.direction.isRight();
+    }
+
+    public boolean isLeft() {
+        return this.direction.isLeft();
     }
 
     public boolean isPresentXY(int x, int y) {

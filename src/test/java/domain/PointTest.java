@@ -32,7 +32,7 @@ public class PointTest {
         Point now = Point.createNextPoint(before, left);
 
 
-        assertThat(now.isPresentXY(beforeX+1,beforeY));
+        assertThat(now.isPresentXY(beforeX + 1, beforeY));
     }
 
     @Test

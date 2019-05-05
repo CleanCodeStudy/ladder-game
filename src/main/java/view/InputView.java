@@ -29,7 +29,7 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public String getPrize(){
+    public String getPrize() {
         return null;
     }
 }
