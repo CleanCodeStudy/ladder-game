@@ -1,7 +1,12 @@
 package dto;
 
+import domain.ExecuteResult;
+import domain.User;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameInformationDto {
     public static final String SPLITTER = ",";
@@ -13,14 +18,19 @@ public class GameInformationDto {
         this.players = stringSplitter(players);
         this.executeResult = stringSplitter(executeResult);
         this.ladderHeight = ladderHeight;
+        validateSize(this.players,this.executeResult);
     }
 
-    public List<String> getPlayers() {
-        return players;
+    public List<User> getPlayers() {
+        return IntStream.range(0,players.size())
+                .mapToObj(i->new User(players.get(i),i+1))
+                .collect(Collectors.toList());
     }
 
-    public List<String> getExecuteResult() {
-        return executeResult;
+    public List<ExecuteResult> getExecuteResult() {
+        return IntStream.range(0,executeResult.size())
+                .mapToObj(i->new ExecuteResult(executeResult.get(i),i+1))
+                .collect(Collectors.toList());
     }
 
     public int getLadderHeight() {
@@ -29,5 +39,11 @@ public class GameInformationDto {
 
     public List<String> stringSplitter(String splitTarget) {
         return Arrays.asList(splitTarget.split(SPLITTER));
+    }
+
+    public void validateSize(List<String> players, List<String> executeResults){
+        if(players.size() != executeResults.size()) {
+            throw new IllegalArgumentException();
+        }
     }
 }

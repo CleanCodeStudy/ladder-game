@@ -1,3 +1,6 @@
+package domain;
+
+import domain.ExecuteResult;
 import domain.generator.LadderGenerator;
 import domain.User;
 import dto.GameResultDto;
@@ -6,8 +9,7 @@ import dto.GameInformationDto;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Map;
 
 public class LadderGame {
     private GameInformationDto gameInformationDto;
@@ -19,19 +21,16 @@ public class LadderGame {
     }
 
     public GameResultDto getGameResult(){
-        List<String> userNames = gameInformationDto.getPlayers();
-        List<String> executeResults = gameInformationDto.getExecuteResult();
-        List<User> userList = IntStream.range(0,userNames.size())
-                .mapToObj(i->new User(userNames.get(i),i+1))
-                .collect(Collectors.toList());
+        List<User> userList = gameInformationDto.getPlayers();
+        List<ExecuteResult> executeResults = gameInformationDto.getExecuteResult();
 
-        HashMap<User,String> userPlayResult = getUserPlayResult(userList,executeResults);
+        Map<User, ExecuteResult> userPlayResult = getUserPlayResult(userList,executeResults);
 
-        return new GameResultDto(ladder,userPlayResult,gameInformationDto);
+        return new GameResultDto(ladder,userPlayResult);
     }
 
-    public HashMap<User,String> getUserPlayResult(List<User> userList, List<String> playResults){
-        HashMap<User ,String> userPlayResult = new HashMap<>();
+    public Map<User, ExecuteResult> getUserPlayResult(List<User> userList, List<ExecuteResult> playResults){
+        Map<User , ExecuteResult> userPlayResult = new HashMap<>();
 
         for(int i = 0; i < userList.size() ; i++){
             int startColumn = userList.get(i).getStartColumn();
