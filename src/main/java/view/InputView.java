@@ -15,8 +15,15 @@ public class InputView {
 
     public UserInputDto getInputDto() {
         String names = getNames();
+        String rewards = getRewards();
         int height = getHeight();
-        return new UserInputDto(names, height);
+        return new UserInputDto(names, height, rewards);
+    }
+
+    private String getRewards() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String rewards = scanner.next();
+        return rewards;
     }
 
     public String getNames() {
@@ -30,6 +37,7 @@ public class InputView {
     }
 
     public String getPrize() {
-        return null;
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.next();
     }
 }

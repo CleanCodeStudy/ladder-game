@@ -1,7 +1,6 @@
-package domain;
+package domain.ladder;
 
 import domain.direction.Direction;
-import domain.ladder.Ladder;
 import domain.ladder.ladderFactory.FixedLadderFactory;
 import domain.ladder.ladderFactory.LadderFactory;
 import dto.UserInputDto;
@@ -25,7 +24,8 @@ public class LadderTest {
     public void setUp() throws Exception {
         names = "kim,lee,park,choi";
         height = 5;
-        inputDto = new UserInputDto(names, height);
+        String rewards = "꽝,5000,꽝,3000";
+        inputDto = new UserInputDto(names, height, rewards);
         factory = new FixedLadderFactory(inputDto);
         ladder = ((FixedLadderFactory) factory).createLadder();
     }
@@ -44,6 +44,6 @@ public class LadderTest {
     public void 좌표에_맞는_방향가져오기() {
         assertThat(ladder.getDirection(0, 0)).isEqualTo(Direction.RIGHT);
         assertThat(ladder.getDirection(0, height / 3)).isEqualTo(Direction.DOWN);
-        assertThat(ladder.getDirection(0, height - 1)).isEqualTo(Direction.LEFT);
+        assertThat(ladder.getDirection(0, height - 1)).isEqualTo(Direction.RIGHT);
     }
 }

@@ -2,6 +2,7 @@ package view;
 
 import domain.direction.Direction;
 import domain.ladder.Ladder;
+import domain.ladder.ladderResult.LadderResult;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -16,14 +17,17 @@ public class OutputView {
     private static final String LINE_BREAK = "\n";
 
     private Ladder ladder;
+    private LadderResult ladderResult;
 
-    public OutputView(Ladder ladder) {
+    public OutputView(Ladder ladder, LadderResult ladderResult) {
         this.ladder = ladder;
+        this.ladderResult = ladderResult;
     }
 
     public void showLadder() {
         showNames();
         showPillar();
+        showRewards();
     }
 
     public void showNames() {
@@ -37,15 +41,6 @@ public class OutputView {
         System.out.println(sb.toString());
     }
 
-    private String drawNameBlank(String name, int max) {
-        StringBuilder sb = new StringBuilder();
-        int width = max - name.length() + 1;
-
-        sb.append(addWidth(width, BLANK));
-
-        return sb.toString();
-    }
-
     private void showPillar() {
         StringBuilder sb = new StringBuilder();
 
@@ -54,6 +49,25 @@ public class OutputView {
             sb.append(LINE_BREAK);
         }
         System.out.println(sb.toString());
+    }
+
+    private void showRewards() {
+        int max = getMax(ladder.getNames());
+        StringBuilder sb = new StringBuilder();
+        for (String reward : ladder.getReward()) {
+            sb.append(reward);
+            sb.append(drawNameBlank(reward, max));
+        }
+        System.out.println(sb.toString() + "\n");
+    }
+
+    private String drawNameBlank(String name, int max) {
+        StringBuilder sb = new StringBuilder();
+        int width = max - name.length() + 1;
+
+        sb.append(addWidth(width, BLANK));
+
+        return sb.toString();
     }
 
     private String drawPillar(int y) {
@@ -102,5 +116,20 @@ public class OutputView {
                 .mapToInt(name -> name.length())
                 .max()
                 .getAsInt();
+    }
+
+    public void showResult(String name) {
+        System.out.println("실행 결과");
+        if (name.equals("all")) {
+            showAll();
+            return;
+        }
+        String reward = ladderResult.findRewardByName(name);
+        System.out.println(reward);
+    }
+
+    private void showAll() {
+        ladderResult.getAllRewards().stream()
+                .forEach(pair -> System.out.println(String.format("%s : %s", pair.getUserName(), pair.getReward())));
     }
 }

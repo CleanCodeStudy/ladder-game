@@ -1,10 +1,6 @@
-package domain;
+package domain.ladder;
 
 import domain.direction.Direction;
-import domain.ladder.Location;
-import domain.ladder.Pillar;
-import domain.ladder.Point;
-import domain.ladder.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PillarTest {
     User user;
+    Reward reward;
+    TopAndBottom topAndBottom;
     String name;
     int height;
     List<Point> points = new ArrayList<>();
@@ -27,11 +25,13 @@ public class PillarTest {
         name = "park";
         height = 10;
         user = new User(name);
+        reward = new Reward("5000");
+        topAndBottom = new TopAndBottom(user, reward);
         List<Location> locations = getLocations();
         points.addAll(getRightPoints(locations));
         points.addAll(getDownPoints(locations));
         points.addAll(getLeftPoints(locations));
-        leftPillar = new Pillar(user, points);
+        leftPillar = new Pillar(topAndBottom, points);
     }
 
     private List<Location> getLocations() {
@@ -60,7 +60,7 @@ public class PillarTest {
 
     @Test
     public void 첫번째_기둥_만들기() {
-        Pillar first = Pillar.createFirst(name, height);
+        Pillar first = Pillar.createFirst(topAndBottom, height);
 
         assertThat(first.getUserName()).isEqualTo(name);
 
@@ -72,7 +72,8 @@ public class PillarTest {
     @Test
     public void 중간_기둥_만들기() {
         String userName = "kim";
-        Pillar pillar = Pillar.createMiddle(userName, leftPillar);
+        topAndBottom = new TopAndBottom(new User(userName), reward);
+        Pillar pillar = Pillar.createMiddle(topAndBottom, leftPillar);
 
         assertThat(pillar.getUserName()).isEqualTo(userName);
 
@@ -98,7 +99,8 @@ public class PillarTest {
     @Test
     public void 마지막_기둥_만들기() {
         String userName = "kim";
-        Pillar pillar = Pillar.createLast(userName, leftPillar);
+        topAndBottom = new TopAndBottom(new User(userName), reward);
+        Pillar pillar = Pillar.createLast(topAndBottom, leftPillar);
 
         assertThat(pillar.getUserName()).isEqualTo(userName);
 

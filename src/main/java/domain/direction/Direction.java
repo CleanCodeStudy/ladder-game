@@ -6,9 +6,15 @@ import java.util.Random;
 
 public enum Direction {
 
-    RIGHT,
-    DOWN,
-    LEFT;
+    RIGHT(1),
+    DOWN(0),
+    LEFT(-1);
+
+    private Integer offset;
+
+    Direction(Integer offset) {
+        this.offset = offset;
+    }
 
     public boolean isRight() {
         return this == RIGHT;
@@ -34,5 +40,9 @@ public enum Direction {
 
     public static Direction createLastDirection(Point point) {
         return point.isRight() ? LEFT : DOWN;
+    }
+
+    public int getOffset() {
+        return this.offset;
     }
 }

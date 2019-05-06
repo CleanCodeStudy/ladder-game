@@ -19,8 +19,9 @@ public class RandomLadderFactoryTest {
     @Before
     public void setUp() throws Exception {
         String names = "kim,lee,park,choi";
+        String rewards = "꽝,5000,꽝,3000";
         height = 5;
-        inputDto = new UserInputDto(names, height);
+        inputDto = new UserInputDto(names, height, rewards);
         people = inputDto.getNames().size();
         factory = new RandomLadderFactory(inputDto);
     }

@@ -1,6 +1,5 @@
-package domain;
+package domain.ladder;
 
-import domain.ladder.Location;
 import org.junit.Before;
 import org.junit.Test;
 

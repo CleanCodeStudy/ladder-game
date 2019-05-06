@@ -6,16 +6,20 @@ import java.util.List;
 
 public class Pillar {
 
-    private User user;
+    private TopAndBottom topAndBottom;
     private List<Point> points;
 
-    public Pillar(User user, List<Point> points) {
-        this.user = user;
+    public Pillar(TopAndBottom topAndBottom, List<Point> points) {
+        this.topAndBottom = topAndBottom;
         this.points = points;
     }
 
     public String getUserName() {
-        return user.getName();
+        return topAndBottom.getUser();
+    }
+
+    public String getReward() {
+        return topAndBottom.getReward();
     }
 
     public Direction getPointDirection(int x, int y) {
@@ -36,15 +40,15 @@ public class Pillar {
                 .count() > 0;
     }
 
-    public static Pillar createFirst(String name, int height) {
-        return new Pillar(new User(name), PointGenerator.createFirst(height));
+    public static Pillar createFirst(TopAndBottom topAndBottom, int height) {
+        return new Pillar(topAndBottom, PointGenerator.createFirst(height));
     }
 
-    public static Pillar createMiddle(String name, Pillar before) {
-        return new Pillar(new User(name), PointGenerator.createMiddle(before.points));
+    public static Pillar createMiddle(TopAndBottom topAndBottom, Pillar before) {
+        return new Pillar(topAndBottom, PointGenerator.createMiddle(before.points));
     }
 
-    public static Pillar createLast(String name, Pillar before) {
-        return new Pillar(new User(name), PointGenerator.createLast(before.points));
+    public static Pillar createLast(TopAndBottom topAndBottom, Pillar before) {
+        return new Pillar(topAndBottom, PointGenerator.createLast(before.points));
     }
 }

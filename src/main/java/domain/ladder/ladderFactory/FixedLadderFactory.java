@@ -11,64 +11,95 @@ import java.util.stream.IntStream;
 
 public class FixedLadderFactory implements LadderFactory {
 
-    private List<String> names;
+    private List<TopAndBottom> topAndBottoms;
     private int height;
 
     public FixedLadderFactory(UserInputDto inputDto) {
-        this.names = inputDto.getNames();
+        this.topAndBottoms = inputDto.toEntities();
         this.height = inputDto.getHeight();
     }
 
     public List<Pillar> createPillars() {
         List<Pillar> pillars = new ArrayList<>();
-        pillars.add(createFixedFirstPillar());
-        addMid(pillars);
-        pillars.add(Pillar.createLast(names.get(getLastIndex()), pillars.get(getLastIndex() - 1)));
+        addFixedFirstPillar(pillars);
+        addFixedMidPillar(pillars);
+        addFixedLastPillar(pillars);
         return pillars;
     }
 
-    public Pillar createFixedFirstPillar() {
-        List<Location> locations = getLocations();
+    private void addFixedFirstPillar(List<Pillar> pillars) {
+        pillars.add(createFixedIndexPillar(0));
+    }
+
+    private Pillar createFixedIndexPillar(int index) {
+        List<Location> locations = getLocations(index);
         List<Point> points = new ArrayList<>();
-        points.addAll(getRightPoints(locations));
-        points.addAll(getDownPoints(locations));
-        points.addAll(getLeftPoints(locations));
-        return new Pillar(new User(names.get(0)), points);
+        points.addAll(createTopFixedPoints(locations, Direction.RIGHT));
+        points.addAll(createMidFixedPoints(locations, Direction.DOWN));
+        points.addAll(createBottomFixedPoints(locations, Direction.RIGHT));
+        return new Pillar(topAndBottoms.get(index), points);
     }
 
-    private List<Location> getLocations() {
-        return IntStream.range(0, height)
-                .mapToObj(y -> new Location(0, y))
-                .collect(Collectors.toList());
-    }
-
-    private List<Point> getRightPoints(List<Location> locations) {
-        return IntStream.range(0, height / 3)
-                .mapToObj(idx -> new Point(locations.get(idx), Direction.RIGHT))
-                .collect(Collectors.toList());
-    }
-
-    private List<Point> getDownPoints(List<Location> locations) {
-        return IntStream.range(height / 3, (height / 3) * 2)
-                .mapToObj(idx -> new Point(locations.get(idx), Direction.DOWN))
-                .collect(Collectors.toList());
-    }
-
-    private List<Point> getLeftPoints(List<Location> locations) {
-        return IntStream.range((height / 3) * 2, height)
-                .mapToObj(idx -> new Point(locations.get(idx), Direction.LEFT))
-                .collect(Collectors.toList());
-    }
-
-    public void addMid(List<Pillar> pillars) {
-        for (int i = 1; i < names.size() - 1; i++) {
-            Pillar pillar = Pillar.createMiddle(names.get(i), pillars.get(i - 1));
-            pillars.add(pillar);
+    private void addFixedMidPillar(List<Pillar> pillars) {
+        pillars.add(createFixedPillarByIdx(1));
+        for (int i = 2; i < topAndBottoms.size() - 1; i++) {
+            pillars.add(createFixedPillarByIdx(i));
         }
     }
 
+    private Pillar createFixedPillarByIdx(int idx) {
+        List<Location> locations = getLocations(idx);
+        List<Point> points = new ArrayList<>();
+        if (idx == 1) {
+            createSecondPoints(locations, points);
+            return new Pillar(topAndBottoms.get(idx), points);
+        }
+        createOnlyDownPoints(locations, points);
+        return new Pillar(topAndBottoms.get(idx), points);
+    }
+
+    private void createSecondPoints(List<Location> locations, List<Point> points) {
+        points.addAll(createTopFixedPoints(locations, Direction.LEFT));
+        points.addAll(createMidFixedPoints(locations, Direction.DOWN));
+        points.addAll(createBottomFixedPoints(locations, Direction.LEFT));
+    }
+
+    private void addFixedLastPillar(List<Pillar> pillars) {
+        pillars.add(createFixedPillarByIdx(getLastIndex()));
+    }
+
+    private void createOnlyDownPoints(List<Location> locations, List<Point> points) {
+        points.addAll(createTopFixedPoints(locations, Direction.DOWN));
+        points.addAll(createMidFixedPoints(locations, Direction.DOWN));
+        points.addAll(createBottomFixedPoints(locations, Direction.DOWN));
+    }
+
+    private List<Location> getLocations(int x) {
+        return IntStream.range(0, height)
+                .mapToObj(y -> new Location(x, y))
+                .collect(Collectors.toList());
+    }
+
+    private List<Point> createTopFixedPoints(List<Location> locations, Direction direction) {
+        return IntStream.range(0, height / 3)
+                .mapToObj(idx -> new Point(locations.get(idx), direction))
+                .collect(Collectors.toList());
+    }
+
+    private List<Point> createMidFixedPoints(List<Location> locations, Direction direction) {
+        return IntStream.range(height / 3, (height / 3) * 2)
+                .mapToObj(idx -> new Point(locations.get(idx), direction))
+                .collect(Collectors.toList());
+    }
+
+    private List<Point> createBottomFixedPoints(List<Location> locations, Direction direction) {
+        return IntStream.range((height / 3) * 2, height)
+                .mapToObj(idx -> new Point(locations.get(idx), direction))
+                .collect(Collectors.toList());
+    }
+
     private int getLastIndex() {
-        return names.size() - 1;
+        return topAndBottoms.size() - 1;
     }
 
     public Ladder createLadder() {
