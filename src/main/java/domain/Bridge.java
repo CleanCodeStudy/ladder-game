@@ -9,10 +9,7 @@ public class Bridge {
     public Bridge(int height,List<Point> points){
         this.height = height;
         this.points = points;
-    }
-
-    public Integer getHeight() {
-        return height;
+        validateBridge(points);
     }
 
     public List<Point> getPoints() {
@@ -32,6 +29,17 @@ public class Bridge {
         }
 
         return point;
+    }
+
+    public void validateBridge(List<Point> points){
+        for(int i = 0 ; i < points.size() - 1 ; i++){
+            Point current = points.get(i);
+            Point next = points.get(i+1);
+
+            if(current.getLinkedType() == next.getLinkedType()){
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
 }

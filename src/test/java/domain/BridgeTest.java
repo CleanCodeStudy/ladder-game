@@ -23,4 +23,15 @@ public class BridgeTest {
         assertEquals(firstBridge.nextPoint(2).getColumn(),leftPoint.getColumn());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void 연속으로_연결됬을경우_에러() {
+        //given
+        Integer height = 1;
+        Point firstPoint = PointGenerator.createRightLinkedPoint(1);
+        Point secondPoint = PointGenerator.createLeftLinkedPoint(2);
+        Point thirdPoint = PointGenerator.createLeftLinkedPoint(3);
+        //when
+        //then
+        Bridge bridge = new Bridge(height,Arrays.asList(firstPoint,secondPoint,thirdPoint));
+    }
 }
