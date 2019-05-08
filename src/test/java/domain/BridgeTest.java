@@ -1,7 +1,6 @@
 package domain;
 
-import domain.Bridge;
-import domain.Point;
+import domain.generator.PointGenerator;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -15,8 +14,8 @@ public class BridgeTest {
     public void 첫번째_브릿지_생성하기() {
         //given
         Integer height = 1;
-        Point leftPoint = Point.createRightLinkedPoint(1);
-        Point rightPoint = Point.createLeftLinkedPoint(2);
+        Point leftPoint = PointGenerator.createRightLinkedPoint(1);
+        Point rightPoint = PointGenerator.createLeftLinkedPoint(2);
         Bridge firstBridge = new Bridge(height, Arrays.asList(leftPoint,rightPoint));
         //when
         //then
@@ -24,24 +23,15 @@ public class BridgeTest {
         assertEquals(firstBridge.nextPoint(2).getColumn(),leftPoint.getColumn());
     }
 
-    @Test
-    public void 첫번쨰_브릿지_연결안된거() {
+    @Test(expected = IllegalArgumentException.class)
+    public void 연속으로_연결됬을경우_에러() {
         //given
+        Integer height = 1;
+        Point firstPoint = PointGenerator.createRightLinkedPoint(1);
+        Point secondPoint = PointGenerator.createLeftLinkedPoint(2);
+        Point thirdPoint = PointGenerator.createLeftLinkedPoint(3);
         //when
         //then
-    }
-
-    @Test
-    public void 고정된_브릿지_생성하기() {
-//        //given
-//        int height = 1;
-//        int playerNumber = 3;
-//        Bridge firstBridge = Bridge.createFixedBridge(height,playerNumber);
-//        Point firstPoint = Point.createRightLinkedPoint(1);
-//        Point secondPoint = Point.createLeftLinkedPoint(2);
-//        Point thridPoint = Point.createNotLinkedPoint(3);
-//        //when
-//        //then
-//        assertThat(firstBridge.nextPoint(1).getColumn()).isEqualTo(secondPoint.getColumn());
+        Bridge bridge = new Bridge(height,Arrays.asList(firstPoint,secondPoint,thirdPoint));
     }
 }

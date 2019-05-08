@@ -1,3 +1,4 @@
+import domain.LadderGame;
 import dto.GameInformationDto;
 import dto.GameResultDto;
 import view.InputView;
@@ -14,15 +15,13 @@ public class LadderController {
 
         GameResultDto gameResultDto = ladderGame.getGameResult();
 
-        OutputView outputView = new OutputView(gameResultDto);
-
-        outputView.printLadder();
+        OutputView.printLadder(gameResultDto,gameInformationDto);
 
         String name;
 
         do{
             name = inputView.inputTargetPlayer();
-            outputView.printExecuteResult(name);
+            OutputView.printUserResult(name,gameResultDto);
         }while(!name.equals("all"));
     }
 }

@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private Integer ladderHeight;
-    private Integer playerNumber;
+    private int ladderHeight;
+    private int playerNumber;
     private List<Bridge> bridges;
 
-    public Ladder(Integer ladderHeight,Integer playerNumber ,List<Bridge> bridges) {
+    public Ladder(int ladderHeight,int playerNumber ,List<Bridge> bridges) {
         this.ladderHeight = ladderHeight;
         this.playerNumber = playerNumber;
         this.bridges = bridges;
     }
 
-    public Integer getLadderHeight() {
+    public int getLadderHeight() {
         return ladderHeight;
     }
 
-    public Integer getPlayerNumber() {
+    public int getPlayerNumber() {
         return playerNumber;
     }
 
@@ -28,20 +28,8 @@ public class Ladder {
         return bridges;
     }
 
-    public static Ladder createLadder(GameInformationDto gameInformationDto){
-        Integer ladderHeight = gameInformationDto.getLadderHeight();
-        Integer playerNumber = gameInformationDto.getPlayers().size();
-        List<Bridge> bridges = new ArrayList<>();
-
-        for(int i = 0 ; i < ladderHeight ; i++){
-            Bridge bridge = Bridge.createBridge(i+1,playerNumber);
-            bridges.add(bridge);
-        }
-
-        return new Ladder(ladderHeight,playerNumber,bridges);
-    }
-
     public Integer progressAllStep(int startColumn) {
+
         validatePosition(startColumn);
 
         int currentColumn = startColumn;

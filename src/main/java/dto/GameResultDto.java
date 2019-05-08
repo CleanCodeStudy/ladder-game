@@ -1,26 +1,24 @@
 package dto;
 
 import domain.Bridge;
+import domain.ExecuteResult;
 import domain.Ladder;
 import domain.User;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class GameResultDto {
-    private final static String NO_USER = "해당 User는 존재하지않습니다.";
+    private final static ExecuteResult NO_USER = new ExecuteResult("해당 사용자는 없습니다.",0);
     private Ladder ladder;
-    private HashMap<User,String> userPlayResult;
-    private GameInformationDto gameInformationDto;
+    private Map<User, ExecuteResult> userPlayResult;
 
-    public GameResultDto(Ladder ladder, HashMap<User, String> userPlayResult,GameInformationDto gameInformationDto) {
+    public GameResultDto(Ladder ladder, Map<User, ExecuteResult> userPlayResult) {
         this.ladder = ladder;
         this.userPlayResult = userPlayResult;
-        this.gameInformationDto = gameInformationDto;
     }
 
-    public HashMap<User, String> getUserPlayResult() {
+    public Map<User, ExecuteResult> getUserPlayResult() {
         return userPlayResult;
     }
 
@@ -28,29 +26,21 @@ public class GameResultDto {
         return ladder.getBridges();
     }
 
-    public List<String> getUserNames(){
-        return gameInformationDto.getPlayers();
-    }
-
-    public List<String> getExecuteResults(){
-        return gameInformationDto.getExecuteResult();
-    }
-
-    public String findByName(String name){
+    public ExecuteResult findByName(String name){
         User find = userPlayResult.keySet().stream()
                 .filter(user -> user.getName().equals(name))
                 .findFirst()
-                .orElse(null);
+                .get();
 
         return userPlayResult.getOrDefault(find,NO_USER);
     }
 
-    public String findByColumnNum(int column) {
+    public ExecuteResult findByColumnNum(int column) {
 
         User find = userPlayResult.keySet().stream()
                 .filter(user -> user.getStartColumn() == column)
                 .findFirst()
-                .orElse(null);
+                .get();
 
         return userPlayResult.getOrDefault(find,NO_USER);
     }

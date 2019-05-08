@@ -1,76 +1,69 @@
 package view;
 
 import domain.Bridge;
-import domain.Point;
+import domain.ExecuteResult;
 import domain.User;
+import dto.GameInformationDto;
 import dto.GameResultDto;
-import util.LinkedType;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String PILLAR = "|";
     private static final String BRIDGE = "-----";
     private static final String BLANK = "     ";
-    private static final String NEXT_LINE = "\n";
 
-    private GameResultDto gameResultDto;
+    private OutputView(){};
 
-    public OutputView(GameResultDto gameResultDto) {
-        this.gameResultDto = gameResultDto;
-    }
-
-    public void printLadder(){
-
-        List<String> userNames = gameResultDto.getUserNames();
+    public static void printLadder(GameResultDto gameResultDto,GameInformationDto gameInformationDto){
+        printUserNames(gameInformationDto.getPlayers());
         List<Bridge> bridges = gameResultDto.getBridges();
-        List<String> executeResults = gameResultDto.getExecuteResults();
-
-        StringBuilder ladderShow = new StringBuilder();
-
-        ladderShow.append(userNames.stream()
-                .collect(Collectors.joining(" ")) + NEXT_LINE);
-
-
         for(int i = 0 ; i < bridges.size() ; i++){
-            String bridgeShow = PILLAR;
+            System.out.print(PILLAR);
 
-            bridgeShow += bridges.get(i).getPoints().stream()
-                    .limit(userNames.size()-1)
-                    .map(point -> getBridgeType(point.getLinkedType()))
+            String bridge = bridges.get(i).getPoints().stream()
+                    .limit(gameInformationDto.getPlayers().size()-1)
+                    .map(point -> point.isRightLinked() ? BRIDGE : BLANK)
                     .collect(Collectors.joining(PILLAR));
 
-            bridgeShow += PILLAR;
-
-            ladderShow.append(bridgeShow + NEXT_LINE);
+            System.out.print(bridge);
+            System.out.print(PILLAR);
+            System.out.println();
         }
 
-        ladderShow.append(executeResults);
-
-        System.out.println(ladderShow.toString());
+        printExecuteResult(gameInformationDto.getExecuteResult());
 
     }
 
-    public String getBridgeType(LinkedType linkedType){
-        if(linkedType == LinkedType.RIGHT){
-            return BRIDGE;
+    public static void printUserNames(List<User> users){
+        for (User user : users){
+            System.out.print(user.getName());
+            System.out.print("     ");
         }
-        return BLANK;
+        System.out.println();
     }
 
-    public void printExecuteResult(String name){
+    public static void printExecuteResult(List<ExecuteResult> results){
+        for (ExecuteResult result : results){
+            System.out.print(result.getResult());
+            System.out.print("     ");
+        }
+        System.out.println();
+    }
+
+    public static void printUserResult(String name,GameResultDto gameResultDto){
         System.out.println("실행결과");
         if(!name.equals("all")){
-            System.out.println(gameResultDto.findByName(name));
+            System.out.println(gameResultDto.findByName(name).getResult());
             return;
         }
 
-        HashMap<User,String> userPlayResult = gameResultDto.getUserPlayResult();
+        Map<User, ExecuteResult> userPlayResult = gameResultDto.getUserPlayResult();
 
         userPlayResult.keySet().stream()
-                .map(key -> String.format("%s : %s",key.getName(),gameResultDto.findByName(key.getName())))
+                .map(key -> String.format("%s : %s",key.getName(),gameResultDto.findByName(key.getName()).getResult()))
                 .forEach(System.out::println);
     }
 }

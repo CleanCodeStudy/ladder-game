@@ -1,9 +1,5 @@
 package domain;
 
-import domain.Point;
-import util.LinkedType;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -13,42 +9,12 @@ public class Bridge {
     public Bridge(int height,List<Point> points){
         this.height = height;
         this.points = points;
-    }
-
-    public Integer getHeight() {
-        return height;
+        validateBridge(points);
     }
 
     public List<Point> getPoints() {
         return points;
     }
-
-    public static Bridge createBridge(int height, int playerNumber){
-        List<Point> points = new ArrayList<>();
-
-        Point firstPoint = Point.createPoint(1,null);
-        points.add(firstPoint);
-
-        for (int i = 1; i < playerNumber-1; i++){
-            Point previous = points.get(i-1);
-            Point current = Point.createPoint(i+1,previous);
-            points.add(current);
-        }
-
-        Point lastPoint = Point.createNotLinkedPoint(playerNumber);
-
-        if(points.get(playerNumber-2).getLinkedType() == LinkedType.RIGHT){
-            lastPoint = Point.createLeftLinkedPoint(playerNumber);
-        }
-        points.add(lastPoint);
-
-        return new Bridge(height,points);
-    }
-
-//    public static Bridge createFixedBridge(int height, int playerNumber) {
-//        List<Point> points = new ArrayList<>();
-//
-//    }
 
     public Point nextPoint(int currentColumn){
         currentColumn --;
@@ -64,4 +30,16 @@ public class Bridge {
 
         return point;
     }
+
+    public void validateBridge(List<Point> points){
+        for(int i = 0 ; i < points.size() - 1 ; i++){
+            Point current = points.get(i);
+            Point next = points.get(i+1);
+
+            if(current.getLinkedType() == next.getLinkedType()){
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
 }
