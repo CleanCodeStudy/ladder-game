@@ -13,7 +13,7 @@ public class Ladder {
     private Ladder(GameStartOption gameStartOption) {
         this.width = gameStartOption.getLadderWidth();
         this.height = gameStartOption.getLadderHeight();
-        this.pillars = new LadderMaker().createLadder(gameStartOption);
+        this.pillars = LadderMaker.of().createLadder(gameStartOption);
     }
 
     public static Ladder of(GameStartOption gameStartOption){

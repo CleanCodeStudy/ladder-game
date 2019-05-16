@@ -9,6 +9,10 @@ public class Bridge {
         this.linkPillarDirection = linkPillarDirection;
     }
 
+    public static Bridge of(Integer location , LinkedType linkPillarDirection){
+        return new Bridge(location, linkPillarDirection);
+    }
+
     public Integer getLocation() {
         return location;
     }

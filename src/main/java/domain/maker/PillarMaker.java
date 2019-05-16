@@ -13,10 +13,14 @@ import static util.RandomIntegerMaker.createRandomIntegersWithRestriction;
 
 public class PillarMaker {
 
+    private PillarMaker(){}
+
+    public static PillarMaker of(){
+        return new PillarMaker();
+    }
+
     private static final Integer LAST_PILLAR_CHECKING_NUM = 2;
     private List<Bridge> bridges = new ArrayList<>();
-
-    private PillarMaker(){};
 
     public List<Bridge> createBridgesInThisPillar(GameStartOption gameStartOption, Pillar previousPillar) {
         createLeftOnlyBridges(previousPillar);

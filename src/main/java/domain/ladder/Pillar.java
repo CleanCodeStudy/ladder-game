@@ -13,6 +13,10 @@ public class Pillar {
         this.pillarNum = pillarNum;
     }
 
+    public static Pillar of(List<Bridge> bridges, Integer pillarNum) {
+        return new Pillar(bridges, pillarNum);
+    }
+
     public Integer getPillarNum() {
         return pillarNum;
     }

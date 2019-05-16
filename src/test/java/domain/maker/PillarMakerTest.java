@@ -1,5 +1,6 @@
 package domain.maker;
 
+import domain.factory.PillarFactoryTest;
 import domain.ladder.Bridge;
 import domain.ladder.LinkedType;
 import domain.ladder.Pillar;
@@ -15,16 +16,16 @@ public class PillarMakerTest {
     @Test
     public void 자동으로_오른쪽_기둥과_연결된_다리리스트_만들기() {
         GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
-        List<Bridge> bridges = new PillarMaker().createBridgesInThisPillar(gameStartOption);
+        List<Bridge> bridges = PillarMaker.of().createBridgesInThisPillar(gameStartOption);
         assertEquals(true, bridges.size() <= 3);
     }
 
     @Test
     public void 첫번째_기둥_bridge_리스트_만들기() {
         GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
-        List<Bridge> bridges = new PillarMaker().createBridgesInThisPillar(gameStartOption);
+        List<Bridge> bridges = PillarMaker.of().createBridgesInThisPillar(gameStartOption);
 
-        Pillar p = new Pillar(bridges, 0);
+        Pillar p = Pillar.of(bridges, 0);
 
         System.out.println(p.getBridgesLocations());
 
@@ -36,11 +37,11 @@ public class PillarMakerTest {
     public void 두번째_기둥_bridge_리스트_만들기() {
         GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 10);
 
-        List<Bridge> bridges = new PillarMaker().createBridgesInThisPillar(gameStartOption);
-        Pillar p = new Pillar(bridges, 0);
+        List<Bridge> bridges = PillarMaker.of().createBridgesInThisPillar(gameStartOption);
+        Pillar p = Pillar.of(bridges, 0);
 
-        List<Bridge> bridges1 = new PillarMaker().createBridgesInThisPillar(gameStartOption, p);
-        Pillar p1 = new Pillar(bridges1, 1);
+        List<Bridge> bridges1 = PillarMaker.of().createBridgesInThisPillar(gameStartOption, p);
+        Pillar p1 = Pillar.of(bridges1, 1);
 
         List<Integer> p1LeftBridgesLocation = p1.getBridgesDirectionLocation(LinkedType.LEFT);
         List<Integer> p1RightBridgesLocation = p1.getBridgesDirectionLocation(LinkedType.RIGHT);
@@ -59,18 +60,18 @@ public class PillarMakerTest {
     public void 마지막_기둥_bridge_리스트_만들기() {
         GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 10);
 
-        List<Bridge> bridges = new PillarMaker().createBridgesInThisPillar(gameStartOption);
-        Pillar p = new Pillar(bridges, 0);
+        List<Bridge> bridges = PillarMaker.of().createBridgesInThisPillar(gameStartOption);
+        Pillar p = Pillar.of(bridges, 0);
 
-        List<Bridge> bridges1 = new PillarMaker().createBridgesInThisPillar(gameStartOption, p);
-        Pillar p1 = new Pillar(bridges1, 1);
+        List<Bridge> bridges1 = PillarMaker.of().createBridgesInThisPillar(gameStartOption, p);
+        Pillar p1 = Pillar.of(bridges1, 1);
 
 
-        List<Bridge> bridges2 = new PillarMaker().createBridgesInThisPillar(gameStartOption, p1);
-        Pillar p2 = new Pillar(bridges2, 2);
+        List<Bridge> bridges2 = PillarMaker.of().createBridgesInThisPillar(gameStartOption, p1);
+        Pillar p2 = Pillar.of(bridges2, 2);
 
-        List<Bridge> bridges3 = new PillarMaker().createBridgesInThisPillar(gameStartOption, p2);
-        Pillar p3 = new Pillar(bridges3, 3);
+        List<Bridge> bridges3 = PillarMaker.of().createBridgesInThisPillar(gameStartOption, p2);
+        Pillar p3 = Pillar.of(bridges3, 3);
 
 
         System.out.println("P RIGHT" + p.getBridgesDirectionLocation(LinkedType.RIGHT));

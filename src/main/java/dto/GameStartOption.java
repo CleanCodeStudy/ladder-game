@@ -16,6 +16,10 @@ public class GameStartOption {
         validate();
     }
 
+    public static GameStartOption of(String participants, int ladderHeight){
+        return new GameStartOption(participants, ladderHeight);
+    }
+
     private int getLadderWidth(String participants) {
         String[] parts = participants.split(DELIMITER);
         return parts.length;

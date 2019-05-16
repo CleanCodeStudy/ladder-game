@@ -1,6 +1,7 @@
 package domain.maker;
 
 import domain.factory.PillarFactory;
+import domain.ladder.Ladder;
 import domain.ladder.Pillar;
 import dto.GameStartOption;
 
@@ -11,6 +12,12 @@ public class LadderMaker {
 
     private List<Pillar> pillars = new ArrayList<>();
     private PillarFactory pillarFactory = new PillarFactory();
+
+    private LadderMaker(){};
+
+    public static LadderMaker of(){
+        return new LadderMaker();
+    }
 
     public List<Pillar> createLadder(GameStartOption gameStartOption) {
         Pillar previous = pillarFactory.createFirstPillar(gameStartOption);

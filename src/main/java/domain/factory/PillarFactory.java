@@ -13,18 +13,18 @@ public class PillarFactory {
 
     public Pillar createFirstPillar (GameStartOption gameStartOption) {
 
-        List<Bridge> bridges = new PillarMaker().createBridgesInThisPillar(gameStartOption);
+        List<Bridge> bridges = PillarMaker.of().createBridgesInThisPillar(gameStartOption);
         Integer pillarNum = MINIMUM_PILLAR_NUM;
 
-        return new Pillar(bridges, pillarNum);
+        return Pillar.of(bridges, pillarNum);
     }
 
     public Pillar createNotFirstPillar (GameStartOption gameStartOption, Pillar previousPillar) {
 
-        List<Bridge> bridges = new PillarMaker().createBridgesInThisPillar(gameStartOption, previousPillar);
+        List<Bridge> bridges = PillarMaker.of().createBridgesInThisPillar(gameStartOption, previousPillar);
         Integer pillarNum = nowPillarNum(previousPillar);
 
-        return new Pillar(bridges, pillarNum);
+        return Pillar.of(bridges, pillarNum);
 
     }
 
