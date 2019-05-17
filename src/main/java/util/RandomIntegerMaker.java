@@ -6,13 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static dto.GameStartOption.DELIMETER;
+import static dto.GameStartOption.DELIMITER;
 
 public class RandomIntegerMaker {
-
-    private RandomIntegerMaker() {
-
-    }
 
     public static final int MIN_HEIGHT_INDEX = 0;
 
@@ -27,16 +23,16 @@ public class RandomIntegerMaker {
                 .collect(Collectors.toList());
     }
 
-    public static List<Integer> createRandomIntegersWithRestriction(Integer heights, List<Integer> restrictions) {
-        List<Integer> randoms = createRandomIntegers(heights);
+    public static List<Integer> createRandomIntegersWithRestriction(Integer ladderHeight, List<Integer> restrictions) {
+        List<Integer> randoms = createRandomIntegers(ladderHeight);
         return randoms.stream()
                 .filter(i -> !restrictions.contains(i))
                 .collect(Collectors.toList());
     }
 
-    public static List<String> separateUserName(String participants) {
-        String[] users = participants.split(DELIMETER);
-        return Arrays.asList(users);
+    public static List<String> separateByDelimiter(String inputString) {
+        String[] splitString = inputString.split(DELIMITER);
+        return Arrays.asList(splitString);
     }
 
     public static Integer randInt(int bound) {

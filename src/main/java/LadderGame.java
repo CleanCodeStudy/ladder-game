@@ -1,18 +1,28 @@
-import data.InputData;
 import domain.ladder.Ladder;
-import domain.user.UserManage;
+import domain.ladderCalculator.LadderIO;
+import dto.GameStartOption;
 import view.InputView;
-import view.OutputView;
+import view.OutputLadder;
 
 public class LadderGame {
 
     public static void main(String args[]) {
-        InputView inputView = new InputView(System.in);
-        InputData inputData = new InputData(inputView.participants(), inputView.ladderHeight());
-        Ladder ladder = new Ladder(inputData);
-        UserManage userManage = new UserManage(inputData);
-        OutputView outputView = new OutputView(userManage, ladder);
-        outputView.printLadder();
+
+        InputView inputView = InputView.of(System.in);
+        GameStartOption gameStartOption = inputView.initGameStartOption();
+        Ladder ladder = Ladder.of(gameStartOption);
+        LadderIO ladderIO = LadderIO.of(gameStartOption);
+        OutputLadder ladderPrint = OutputLadder.of(ladderIO, ladder);
+
+        ladderPrint.drawUserNames();
+        ladderPrint.drawOutput();
+        ladderPrint.drawResults();
+
+        while (true) {
+            String ask = inputView.showResultUser();
+            ladderPrint.showLadderResult(ask);
+        }
+
     }
 
 }

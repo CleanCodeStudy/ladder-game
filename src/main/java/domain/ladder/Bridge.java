@@ -4,9 +4,14 @@ public class Bridge {
     private Integer location;
     private LinkedType linkPillarDirection;
 
-    public Bridge(Integer location, LinkedType linkPillarDirection) {
+
+    private Bridge(Integer location, LinkedType linkPillarDirection) {
         this.location = location;
         this.linkPillarDirection = linkPillarDirection;
+    }
+
+    public static Bridge of(Integer location , LinkedType linkPillarDirection){
+        return new Bridge(location, linkPillarDirection);
     }
 
     public Integer getLocation() {

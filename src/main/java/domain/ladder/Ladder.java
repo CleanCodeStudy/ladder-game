@@ -1,9 +1,10 @@
 package domain.ladder;
 
+import domain.maker.LadderMaker;
 import dto.GameStartOption;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Ladder {
 
@@ -11,29 +12,21 @@ public class Ladder {
     private Integer width;
     private Integer height;
 
-    public Ladder(GameStartOption gameStartOption) {
+    private Ladder(GameStartOption gameStartOption) {
         this.width = gameStartOption.getLadderWidth();
         this.height = gameStartOption.getLadderHeight();
-        this.pillars = createLadder(gameStartOption);
+        this.pillars = LadderMaker.of().createLadder(gameStartOption);
     }
 
-    private List<Pillar> createLadder(GameStartOption gameStartOption) {
-        List<Pillar> pillars = new ArrayList<>();
-        Pillar previous = new Pillar(gameStartOption, null); //팩토리 메소드 패턴 or construction 1개
-        pillars.add(previous);
-        for (int i = 1; i < width; i++) {
-            Pillar now = new Pillar(gameStartOption, previous);
-            pillars.add(now);
-            previous = now;
-        }
-        return pillars;
+    public static Ladder of(GameStartOption gameStartOption) {
+        return new Ladder(gameStartOption);
     }
 
     public Pillar getPillarByNum(Integer pillarNum) {
         return pillars.stream()
                 .filter(p -> p.getPillarNum() == pillarNum)
                 .findFirst()
-                .orElseThrow(IllegalArgumentException :: new); // optional orElse에 null 던지지 말기 throw Exception
+                .orElseThrow(IllegalArgumentException::new); // optional orElse에 null 던지지 말기 throw Exception
     }
 
     public List<Pillar> getPillars() {
@@ -46,6 +39,15 @@ public class Ladder {
 
     public Integer getHeight() {
         return height;
+    }
+
+    public Pillar getNextPillar(Pillar nowPillar, Integer nowLocation) {
+        Optional<Bridge> linkBridge = nowPillar.getLevelBridges(nowLocation);
+        if (!linkBridge.isPresent())
+            return nowPillar;
+        return linkBridge.get().getLinkPillarDirection() == LinkedType.RIGHT ?
+                getPillarByNum(nowPillar.getPillarNum() + 1) :
+                getPillarByNum(nowPillar.getPillarNum() - 1);
     }
 
 }
