@@ -10,7 +10,7 @@ public class RowTest {
 
     @Test
     public void location에_맞는_bridge_point_생성() {
-        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 4);
+        GameStartOption gameStartOption = GameStartOption.of("pobi,honux,crong,jk", 4, "꽝,5000,꽝,3000");
         Ladder ladder = Ladder.of(gameStartOption);
 
         Row row = Row.of(1, ladder);
@@ -24,7 +24,7 @@ public class RowTest {
 
     @Test
     public void point와_bridge_Pillar_대응_확인() {
-        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 4);
+        GameStartOption gameStartOption = GameStartOption.of("pobi,honux,crong,jk", 4, "꽝,5000,꽝,3000");
         Ladder ladder = Ladder.of(gameStartOption);
 
         Row row = Row.of(1, ladder);

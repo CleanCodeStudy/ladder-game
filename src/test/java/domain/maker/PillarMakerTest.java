@@ -15,14 +15,16 @@ public class PillarMakerTest {
 
     @Test
     public void 자동으로_오른쪽_기둥과_연결된_다리리스트_만들기() {
-        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        GameStartOption gameStartOption = GameStartOption.of("pobi,honux,crong,jk", 3, "꽝,5000,꽝,3000");
+
         List<Bridge> bridges = PillarMaker.of().createBridgesInThisPillar(gameStartOption);
         assertEquals(true, bridges.size() <= 3);
     }
 
     @Test
     public void 첫번째_기둥_bridge_리스트_만들기() {
-        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        GameStartOption gameStartOption = GameStartOption.of("pobi,honux,crong,jk", 3, "꽝,5000,꽝,3000");
+
         List<Bridge> bridges = PillarMaker.of().createBridgesInThisPillar(gameStartOption);
 
         Pillar p = Pillar.of(bridges, 0);
@@ -35,7 +37,8 @@ public class PillarMakerTest {
 
     @Test
     public void 두번째_기둥_bridge_리스트_만들기() {
-        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 10);
+        GameStartOption gameStartOption = GameStartOption.of("pobi,honux,crong,jk", 10, "꽝,5000,꽝,3000");
+
 
         List<Bridge> bridges = PillarMaker.of().createBridgesInThisPillar(gameStartOption);
         Pillar p = Pillar.of(bridges, 0);
@@ -58,7 +61,8 @@ public class PillarMakerTest {
 
     @Test
     public void 마지막_기둥_bridge_리스트_만들기() {
-        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 10);
+        GameStartOption gameStartOption = GameStartOption.of("pobi,honux,crong,jk", 3, "꽝,5000,꽝,3000");
+
 
         List<Bridge> bridges = PillarMaker.of().createBridgesInThisPillar(gameStartOption);
         Pillar p = Pillar.of(bridges, 0);

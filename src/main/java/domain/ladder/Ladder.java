@@ -2,7 +2,9 @@ package domain.ladder;
 
 import domain.maker.LadderMaker;
 import dto.GameStartOption;
+
 import java.util.List;
+import java.util.Optional;
 
 public class Ladder {
 
@@ -16,7 +18,7 @@ public class Ladder {
         this.pillars = LadderMaker.of().createLadder(gameStartOption);
     }
 
-    public static Ladder of(GameStartOption gameStartOption){
+    public static Ladder of(GameStartOption gameStartOption) {
         return new Ladder(gameStartOption);
     }
 
@@ -37,6 +39,15 @@ public class Ladder {
 
     public Integer getHeight() {
         return height;
+    }
+
+    public Pillar getNextPillar(Pillar nowPillar, Integer nowLocation) {
+        Optional<Bridge> linkBridge = nowPillar.getLevelBridges(nowLocation);
+        if (!linkBridge.isPresent())
+            return nowPillar;
+        return linkBridge.get().getLinkPillarDirection() == LinkedType.RIGHT ?
+                getPillarByNum(nowPillar.getPillarNum() + 1) :
+                getPillarByNum(nowPillar.getPillarNum() - 1);
     }
 
 }

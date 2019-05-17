@@ -11,7 +11,8 @@ public class PillarFactoryTest {
 
     @Test
     public void 첫번째기둥_넘버만들기() {
-        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        GameStartOption gameStartOption = GameStartOption.of("pobi,honux,crong,jk", 10, "꽝,5000,꽝,3000");
+
         PillarFactory pillarFactory = new PillarFactory();
         Pillar p = pillarFactory.createFirstPillar(gameStartOption);
         assertEquals((Integer) 0, p.getPillarNum());
@@ -19,7 +20,8 @@ public class PillarFactoryTest {
 
     @Test
     public void 가운데기둥_넘버만들기() {
-        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        GameStartOption gameStartOption = GameStartOption.of("pobi,honux,crong,jk", 10, "꽝,5000,꽝,3000");
+
         PillarFactory pillarFactory = new PillarFactory();
         Pillar p = pillarFactory.createFirstPillar(gameStartOption);
         Pillar p1 = pillarFactory.createNotFirstPillar(gameStartOption, p);
@@ -29,7 +31,8 @@ public class PillarFactoryTest {
 
     @Test
     public void 마지막기둥_넘버만들기() {
-        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        GameStartOption gameStartOption = GameStartOption.of("pobi,honux,crong,jk", 10, "꽝,5000,꽝,3000");
+
         PillarFactory pillarFactory = new PillarFactory();
         Pillar p = pillarFactory.createFirstPillar(gameStartOption);
         Pillar p1 = pillarFactory.createNotFirstPillar(gameStartOption, p);
@@ -41,7 +44,8 @@ public class PillarFactoryTest {
 
     @Test
     public void 이전기둥확인해서_넘버만들기() {
-        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        GameStartOption gameStartOption = GameStartOption.of("pobi,honux,crong,jk", 10, "꽝,5000,꽝,3000");
+
         PillarFactory pillarFactory = new PillarFactory();
         Pillar p = pillarFactory.createFirstPillar(gameStartOption);
         Pillar p1 = pillarFactory.createNotFirstPillar(gameStartOption, p);

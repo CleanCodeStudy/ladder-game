@@ -9,15 +9,17 @@ public class GameStartOption {
 
     private int ladderHeight;
     private String participants;
+    private String results;
 
-    public GameStartOption(String participants, int ladderHeight) {
+    public GameStartOption(String participants, int ladderHeight, String results) {
         this.ladderHeight = ladderHeight;
         this.participants = participants;
+        this.results = results;
         validate();
     }
 
-    public static GameStartOption of(String participants, int ladderHeight){
-        return new GameStartOption(participants, ladderHeight);
+    public static GameStartOption of(String participants, int ladderHeight, String results){
+        return new GameStartOption(participants, ladderHeight, results);
     }
 
     private int getLadderWidth(String participants) {
@@ -37,10 +39,16 @@ public class GameStartOption {
         return ladderHeight;
     }
 
+    public String getResults() {
+        return results;
+    }
+
     private void validate(){
         if(ladderHeight < MINIMUM_LADDER_HEIGHT)
             throw new IllegalArgumentException("올바른 사다리 높이를 입력해주세요.");
         if(getLadderWidth() < MINIMUM_PARTICIPANTS_COUNT )
             throw new IllegalArgumentException(("참가자 수를 2명이상 입력해주세요."));
+        if(participants.split(DELIMITER).length != results.split(DELIMITER).length)
+            throw new IllegalArgumentException(("결과와 참가자 수를 동일하게 입력해주세요."));
     }
 }

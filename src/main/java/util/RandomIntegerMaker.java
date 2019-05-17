@@ -30,9 +30,9 @@ public class RandomIntegerMaker {
                 .collect(Collectors.toList());
     }
 
-    public static List<String> separateUserName(String participants) {
-        String[] users = participants.split(DELIMITER);
-        return Arrays.asList(users);
+    public static List<String> separateByDelimiter(String inputString) {
+        String[] splitString = inputString.split(DELIMITER);
+        return Arrays.asList(splitString);
     }
 
     public static Integer randInt(int bound) {

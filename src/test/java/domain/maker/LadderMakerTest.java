@@ -12,7 +12,8 @@ public class LadderMakerTest {
 
     @Test
     public void LadderMaker로_Ladder안에있는_PillarList_만들기() {
-        GameStartOption gameStartOption = new GameStartOption("pobi,honux,crong,jk", 3);
+        GameStartOption gameStartOption = GameStartOption.of("pobi,honux,crong,jk", 3, "꽝,5000,꽝,3000");
+
         LadderMaker ladderMaker = LadderMaker.of();
         List<Pillar> pillarList = ladderMaker.createLadder(gameStartOption);
         assertEquals(4, pillarList.size());

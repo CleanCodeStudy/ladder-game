@@ -18,7 +18,7 @@ public class UtilTest {
     @Test
     public void UserName_여러개로_분리하기() {
         String users = "pobi,honux,crong,jk";
-        List<String> separateUserName = RandomIntegerMaker.separateUserName(users);
+        List<String> separateUserName = RandomIntegerMaker.separateByDelimiter(users);
         assertEquals("pobi", separateUserName.get(0));
     }
 }
