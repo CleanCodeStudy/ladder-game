@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Pillar {
@@ -23,6 +24,12 @@ public class Pillar {
 
     public List<Bridge> getBridges() {
         return bridges;
+    }
+
+    public Optional<Bridge> getLevelBridges(Integer level) {
+        return bridges.stream()
+                .filter(bridge -> bridge.getLocation().equals(level))
+                .findFirst();
     }
 
     public List<Integer> getBridgesLocations() {

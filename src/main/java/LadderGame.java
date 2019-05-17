@@ -10,7 +10,10 @@ public class LadderGame {
         GameStartOption gameStartOption = InputView.of(System.in).initGameStartOption();
         Ladder ladder = Ladder.of(gameStartOption);
         ParticipantUsers userManage = ParticipantUsers.of(gameStartOption);
-        OutputView outputView = OutputView.of(userManage, ladder);
-        outputView.printLadder();
+        OutputView print = OutputView.of(userManage, ladder);
+
+        print.drawUserNames();
+        print.drawOutput();
+
     }
 }
