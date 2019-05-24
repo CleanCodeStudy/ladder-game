@@ -20,4 +20,8 @@ public class PrizeCollection {
     public List<Prize> getPrizes() {
         return new ArrayList<>(prizes);
     }
+
+    public Prize getPrize(int end) {
+        return prizes.get(end);
+    }
 }

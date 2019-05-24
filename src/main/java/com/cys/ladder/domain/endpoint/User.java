@@ -11,18 +11,18 @@ public class User {
     }
 
     private void validateName(String name){
-        if(name.length() >= 5){
+        if(name.length() > 5){
             throw new IllegalArgumentException();
         }
     }
 
-    public boolean isEqualToLocation(Integer location){
-        return this.location == location;
-    }
 
     public String getName() {
         return name;
     }
 
 
+    public boolean isEqualName(String name) {
+        return name.equals(this.name);
+    }
 }

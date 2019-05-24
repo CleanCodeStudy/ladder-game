@@ -1,5 +1,6 @@
 package com.cys.ladder.view;
 
+import com.cys.ladder.domain.GameResult;
 import com.cys.ladder.domain.endpoint.User;
 import com.cys.ladder.domain.ladder.Bridge;
 import com.cys.ladder.domain.ladder.Ladder;
@@ -52,4 +53,13 @@ public class OutView {
         }
     }
 
+    public static void drawResult(GameResult gameResult, String name) {
+        if(name.equals("all")){
+            gameResult.getResults()
+                    .forEach((user, prize) -> String.format("%s : %s",user.getName(),prize.getPrize()));
+            return;
+        }
+
+        System.out.println(gameResult.findByResult(name));
+    }
 }

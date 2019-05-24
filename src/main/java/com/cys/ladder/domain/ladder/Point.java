@@ -7,7 +7,7 @@ public class Point {
     private LinkedStatus linkedStatus;
 
     public Point(LinkedStatus status) {
-        this.column = 1;
+        this.column = 0;
         this.linkedStatus = status;
     }
 
@@ -26,5 +26,19 @@ public class Point {
 
     public boolean isLeftLinked() {
         return linkedStatus == LinkedStatus.LEFT;
+    }
+
+    public boolean isEqualToColumn(int start) {
+        return column == start;
+    }
+
+    public int nextColumn() {
+        if (isRightLinked()) {
+            return column + 1;
+        }
+        if (isLeftLinked()) {
+            return column - 1;
+        }
+        return column;
     }
 }

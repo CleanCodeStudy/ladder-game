@@ -30,7 +30,7 @@ public class LineMaker {
     }
 
     private void addLastPoint(int playerNum){
-        Point lastPoint = new Point(playerNum,LinkedStatus.createLastLink(points.get(playerNum-2)));
+        Point lastPoint = new Point(playerNum-1,LinkedStatus.createLastLink(points.get(playerNum-2)));
         points.add(lastPoint);
     }
 

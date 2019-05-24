@@ -24,4 +24,8 @@ public class UserCollection {
     public Integer getSize(){
         return users.size();
     }
+
+    public User getUser(int start) {
+        return users.get(start);
+    }
 }

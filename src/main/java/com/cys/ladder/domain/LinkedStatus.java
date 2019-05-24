@@ -19,10 +19,6 @@ public enum LinkedStatus {
             return LinkedStatus.LEFT;
         }
 
-        if(previous.isLeftLinked()){
-            return LinkedStatus.RIGHT;
-        }
-
         return ofRandom();
     }
 

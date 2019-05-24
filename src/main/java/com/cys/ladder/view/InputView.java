@@ -15,4 +15,8 @@ public class InputView {
     private static Scanner getScanner(){
         return new Scanner(System.in);
     }
+
+    public static String inputName() {
+        return getScanner().nextLine();
+    }
 }
